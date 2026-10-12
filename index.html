@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="面向豌豆思维线上少儿数学思维班主任（LP）的《豌豆产品介绍（下）》互动微课">
+<title>豌豆产品介绍（下） · 班主任微课</title>
+<style>
+
+:root{--primary:#4F46E5;--primary-light:#EEF2FF;--primary-dark:#3730A3;--accent:#D97706;--accent-light:#FEF3C7;--success:#059669;--danger:#DC2626;--bg:#F8FAFC;--card:#FFFFFF;--text:#1E293B;--text-secondary:#64748B;--border:#E2E8F0;--shadow:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.06);--shadow-lg:0 10px 25px rgba(0,0,0,0.08);--radius:12px;--radius-sm:8px;--sidebar-bg:#1e293b;--sidebar-text:#cbd5e1;--sidebar-active:#6366f1}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Noto Sans HK',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;display:flex;min-height:100vh}
+.sidebar{width:280px;min-width:280px;background:var(--sidebar-bg);color:var(--sidebar-text);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform 0.3s}
+.sidebar-close-btn{display:none;position:absolute;top:8px;right:12px;background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer;z-index:10;padding:8px;line-height:1}
+.sidebar-header{padding:24px 20px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sidebar-header h3{font-size:14px;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.sidebar-header .course-title{font-size:16px;font-weight:700;color:#fff;line-height:1.4}
+.sidebar-progress{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:#94a3b8;margin-bottom:8px}
+.progress-bar{height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:var(--sidebar-active);border-radius:3px;transition:width .5s ease;width:0%}
+.sidebar-nav{flex:1;overflow-y:auto;padding:12px 0}
+.nav-section{padding:8px 20px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;transition:all .2s;border-left:3px solid transparent}
+.nav-section:hover{background:rgba(255,255,255,0.05)}
+.nav-section.active{background:rgba(99,102,241,0.15);border-left-color:var(--sidebar-active);color:#fff}
+.nav-section.completed{color:#94a3b8}
+.nav-section.completed .nav-icon{background:var(--success);color:#fff}
+.nav-section.locked{opacity:.45;cursor:not-allowed;pointer-events:none}
+.nav-section.locked .nav-icon{background:rgba(255,255,255,0.08);color:#64748b}
+.nav-icon{width:32px;height:32px;min-width:32px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--sidebar-text);transition:all .3s}
+.nav-section.active .nav-icon{background:var(--sidebar-active);color:#fff}
+.nav-info .nav-label{font-size:13px;font-weight:600}
+.nav-info .nav-sub{font-size:11px;color:#64748b;margin-top:2px}
+.nav-section.active .nav-info .nav-sub{color:#94a3b8}
+.sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,0.1);font-size:12px;color:#64748b}
+.study-timer{padding:10px 20px;border-bottom:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;gap:10px;font-size:13px}
+.timer-icon{font-size:16px}
+.timer-display{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.timer-label{color:#94a3b8;font-size:11px}
+.main{margin-left:280px;flex:1;padding:40px;max-width:900px;min-width:0}
+.section{display:none;animation:fadeSlide .4s ease}
+.section.active{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.section-header{margin-bottom:32px}
+.section-badge{display:inline-block;padding:4px 14px;background:#dbeafe;color:var(--primary-dark);border-radius:20px;font-size:13px;font-weight:600;margin-bottom:12px}
+.section-header h1{font-size:28px;font-weight:800;color:var(--text);margin-bottom:8px}
+.section-header .duration{font-size:14px;color:var(--text-secondary)}
+.card{background:var(--card);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);border:1px solid var(--border)}
+.card-title{font-size:18px;font-weight:700;margin-bottom:16px;color:var(--text)}
+.highlight-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-left:4px solid var(--primary);padding:20px 24px;border-radius:var(--radius-sm);margin:20px 0}
+.highlight-box.warning{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left-color:var(--accent)}
+.highlight-box.success{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-left-color:var(--success)}
+.script-block{background:#f1f5f9;padding:20px 24px;border-radius:var(--radius-sm);font-style:italic;color:#475569;position:relative;margin:16px 0;line-height:1.8}
+.script-block::before{content:'\01f399\00fe0f 话术范例';position:absolute;top:-10px;left:16px;background:#475569;color:#fff;padding:2px 10px;border-radius:10px;font-size:11px;font-style:normal}
+.flow-steps{display:flex;gap:16px;margin:20px 0;flex-wrap:wrap}
+.flow-step{flex:1;min-width:140px;background:var(--card);border:2px solid var(--border);border-radius:var(--radius-sm);padding:20px;text-align:center;box-shadow:var(--shadow)}
+.flow-step .step-num{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:12px}
+.flow-step h4{font-size:14px;font-weight:700;margin-bottom:8px}
+.flow-step p{font-size:13px;color:var(--text-secondary);line-height:1.6}
+.flow-arrow{display:flex;align-items:center;font-size:24px;color:var(--primary);font-weight:700}
+.strategy-grid{display:flex;gap:16px;margin:20px 0;flex-wrap:wrap}
+.strategy-card{flex:1;min-width:200px;background:var(--card);border:2px solid var(--border);border-radius:var(--radius-sm);padding:24px;text-align:center;box-shadow:var(--shadow)}
+.strategy-card .icon{font-size:36px;margin-bottom:12px}
+.strategy-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.strategy-card p{font-size:13px;color:var(--text-secondary)}
+.step-list{counter-reset:step}
+.step-item{counter-increment:step;display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border)}
+.step-item:last-child{border-bottom:none}
+.step-num-big{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
+.step-content h4{font-size:16px;color:var(--text);margin-bottom:4px}
+.step-content p{font-size:14px;color:var(--text-secondary)}
+.chat-scene{max-width:650px;margin:0 auto}
+.chat-msg{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.chat-msg.lp{flex-direction:row}
+.chat-msg.parent{flex-direction:row-reverse}
+.chat-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;font-weight:700}
+.chat-msg.lp .chat-avatar{background:#EEF2FF;color:var(--primary-dark)}
+.chat-msg.parent .chat-avatar{background:#FEF3C7;color:var(--accent)}
+.chat-bubble{max-width:75%;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.6}
+.chat-msg.lp .chat-bubble{background:#F1F5F9;color:var(--text);border-bottom-left-radius:4px}
+.chat-msg.parent .chat-bubble{background:#EEF2FF;color:var(--text);border-bottom-right-radius:4px}
+.chat-label{font-size:11px;color:var(--text-secondary);margin-bottom:4px}
+.tab-wrap{display:flex;gap:4px;margin-bottom:16px;background:var(--border);border-radius:10px;padding:4px;flex-wrap:wrap}
+.tab-btn{flex:1;min-width:70px;padding:8px 12px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:12px;font-weight:500;color:var(--text-secondary);transition:all .2s}
+.tab-btn.active{background:var(--card);color:var(--primary);font-weight:600;box-shadow:var(--shadow)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.highlight{background:linear-gradient(180deg,transparent 60%,#FEF08A 60%);padding:0 4px}
+.tips-box{background:var(--accent-light);border-left:4px solid var(--accent);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px}
+.tips-box strong{color:var(--accent)}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.badge-primary{background:var(--primary-light);color:var(--primary)}
+.badge-warning{background:var(--accent-light);color:var(--accent)}
+.badge-success{background:#ECFDF5;color:var(--success)}
+.quiz-card{background:var(--card);border-radius:var(--radius);padding:28px;margin:12px 0;box-shadow:var(--shadow-lg);border:2px solid var(--border)}
+.quiz-card.locked .quiz-options{opacity:0.5;filter:grayscale(0.4);pointer-events:none}
+.quiz-card.locked .quiz-locked-hint{display:flex}
+.quiz-card:not(.locked) .quiz-locked-hint{display:none}
+.quiz-locked-hint{display:none;align-items:center;justify-content:center;padding:10px 14px;background:#f1f5f9;color:#475569;border-radius:6px;font-size:13px;margin-top:12px;border:1px dashed #cbd5e1}
+.quiz-question{font-size:16px;font-weight:600;margin-bottom:20px;line-height:1.7}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{display:flex;align-items:center;gap:12px;padding:16px;border:2px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;min-height:48px}
+.quiz-option:hover{border-color:var(--primary-light);background:#f0f7ff}
+.quiz-option.correct{border-color:var(--success)!important;background:#ecfdf5!important}
+.quiz-option.wrong{border-color:var(--danger)!important;background:#fef2f2!important}
+.quiz-option.disabled{opacity:.5;cursor:default;border-color:#e2e8f0;background:#f8fafc}
+.quiz-option.correct .quiz-option-label{background:var(--success);color:#fff}
+.quiz-option.wrong .quiz-option-label{background:var(--danger);color:#fff}
+.quiz-option-label{width:28px;height:28px;border-radius:50%;background:var(--primary-light);color:var(--primary-dark);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.quiz-feedback{display:none;margin-top:16px;padding:16px;border-radius:var(--radius-sm);font-size:14px;line-height:1.7}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct{background:#ecfdf5;color:#065f46}
+.quiz-feedback.wrong{background:#fef2f2;color:#991b1b}
+.final-task-container{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-lg);border:2px solid var(--border)}
+.final-task-input{width:100%;min-height:180px;padding:16px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;line-height:1.8;resize:vertical;font-family:inherit}
+.final-task-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,0.1)}
+.final-task-input:disabled{background:#f1f5f9;cursor:not-allowed}
+.char-counter{text-align:right;font-size:12px;color:var(--text-secondary);margin-top:6px}
+.ai-feedback-panel{display:none;margin-top:24px}
+.ai-feedback-panel.show{display:block}
+.score-display{text-align:center;margin:16px 0}
+.score-circle{width:80px;height:80px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:#fff}
+.score-circle.high{background:linear-gradient(135deg,#10b981,#059669)}
+.score-circle.medium{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.score-circle.low{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.eval-dimensions{display:flex;gap:16px;flex-wrap:wrap}
+.eval-dim{flex:1;min-width:150px;background:#f8fafc;border-radius:var(--radius-sm);padding:20px;text-align:center}
+.keywords-result{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;justify-content:center}
+.keyword-tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.keyword-tag.found{background:#ecfdf5;color:#065f46}
+.keyword-tag.missing{background:#fef2f2;color:#991b1b}
+.dialogue-container{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:2px solid var(--border);overflow:hidden}
+.dialogue-header{padding:16px 20px;background:var(--primary-light);border-bottom:1px solid var(--border);font-weight:700;color:var(--primary-dark);display:flex;justify-content:space-between;align-items:center}
+.dialogue-messages{max-height:400px;overflow-y:auto;padding:16px 20px;min-height:150px}
+.dialogue-input-area{display:flex;padding:12px 20px;border-top:1px solid var(--border);gap:8px}
+.dialogue-input-area input{flex:1;padding:12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit}
+.dialogue-input-area input:focus{outline:none;border-color:var(--primary)}
+.btn{padding:12px 24px;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:var(--primary);color:#fff}
+.btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn-outline{background:var(--card);color:var(--primary);border:2px solid var(--primary)}
+.btn-outline:hover{background:var(--primary-light)}
+.btn-success{background:var(--success);color:#fff}
+.btn-sm{padding:8px 16px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.section-nav-buttons{display:flex;justify-content:space-between;margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:8px;color:#fff;font-size:14px;font-weight:600;z-index:9999;animation:slideDown .3s ease}
+.toast.warning{background:#d97706}
+.toast.success{background:#059669}
+.toast.error{background:#dc2626}
+@keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.notes-toggle{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:90}
+.notes-panel{position:fixed;bottom:0;right:0;width:340px;background:var(--card);border-left:1px solid var(--border);border-top:1px solid var(--border);box-shadow:-4px -4px 20px rgba(0,0,0,0.1);padding:20px;transform:translateX(100%);transition:transform .3s;z-index:200}
+.notes-panel.open{transform:translateX(0)}
+.notes-panel textarea{width:100%;height:200px;padding:12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit;resize:vertical}
+.cert-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;justify-content:center;align-items:center}
+.cert-paper{background:#fff;width:700px;padding:48px 36px;text-align:center;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.cert-paper h1{font-size:28px;color:#3730A3;margin-bottom:4px}
+.cert-paper .sub{font-size:12px;color:#64748b;letter-spacing:.1em;margin-bottom:24px}
+.cert-paper .body{font-size:15px;line-height:2;color:#1e293b}
+.cert-paper .name{display:inline-block;border-bottom:2px solid #4F46E5;min-width:120px;padding:4px 12px;margin:0 4px}
+.cert-paper .course{font-weight:700;color:#3730A3;margin:8px 0}
+.cert-paper .score{margin:20px 0 4px;font-size:16px;font-weight:600;color:#10b981}
+.cert-paper .final-score{margin:4px 0 20px;font-size:14px;font-weight:600;color:#3730A3}
+.cert-footer{display:flex;justify-content:space-between;font-size:12px;color:#64748b;margin-top:32px;border-top:1px solid #e2e8f0;padding-top:16px}
+.cert-actions{margin-top:24px;display:flex;gap:12px;justify-content:center}
+.ch3-textarea{width:100%;min-height:220px;padding:16px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;line-height:1.8;resize:vertical;font-family:inherit}
+.ch3-textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,0.1)}
+.practice-textarea{width:100%;min-height:280px;padding:16px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;line-height:1.8;resize:vertical;font-family:inherit;box-sizing:border-box}
+.practice-textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,0.1)}
+.ch3-ref-panel{display:none;margin-top:16px}
+.ch3-ref-panel.show{display:block}
+.course-img{max-width:100%;border-radius:var(--radius-sm);box-shadow:var(--shadow);margin:16px 0;border:1px solid var(--border)}
+.mobile-header{display:none;position:fixed;top:0;left:0;right:0;background:var(--sidebar-bg);color:#fff;padding:12px 16px;z-index:99;align-items:center;justify-content:space-between}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99}
+.typing-indicator{display:flex;gap:4px;padding:10px 14px;background:#EEF2FF;border-radius:14px;border-bottom-right-radius:4px;width:fit-content}
+.typing-indicator span{width:8px;height:8px;background:#94a3b8;border-radius:50%;animation:typing 1.4s infinite ease-in-out}
+.typing-indicator span:nth-child(2){animation-delay:.2s}
+.typing-indicator span:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+.dialogue-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.final-actions{flex-wrap:wrap}
+.final-call-btn{padding:14px 28px;font-size:16px;display:inline-flex;align-items:center;gap:8px}
+.final-score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.final-score-card{background:#f8fafc;border-radius:var(--radius-sm);padding:16px;text-align:center}
+.final-score-card .score{font-size:24px;font-weight:800;color:var(--primary)}
+.final-score-card .label{font-size:12px;color:var(--text-secondary);margin-top:4px}
+.final-feedback-text{background:#f8fafc;border-radius:var(--radius-sm);padding:16px;font-size:14px;line-height:1.7;margin-top:16px}
+.sidebar-overlay.show{display:block}
+/* 移动端优化：表格横向滚动、评分卡2列、价格表最小宽度 */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0;border-radius:6px}
+.table-wrap table{min-width:680px}
+.final-score-grid{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1024px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.sidebar-close-btn{display:block}.main{margin-left:0;padding:24px 16px;padding-top:60px}.mobile-header{display:flex}.eval-dimensions{flex-direction:column}.cert-paper{width:95%;padding:24px 16px}.flow-steps{flex-direction:column}.flow-arrow{transform:rotate(90deg);justify-content:center}.final-score-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.quiz-option{padding:12px}.quiz-question{font-size:15px}.dialogue-header{flex-direction:column;align-items:flex-start;gap:8px}.section-header h1{font-size:24px}.final-call-btn{width:100%;justify-content:center}.final-actions{flex-direction:column}.final-actions .btn{width:100%;justify-content:center}.cert-paper{padding:24px 12px}.cert-paper h1{font-size:22px}}
+
+/* ============================================================
+   《豌豆产品介绍》系列微课 · 补充样式（叠加在基础骨架样式之上）
+   ============================================================ */
+
+/* 视频 */
+.video-wrapper{margin:24px 0;position:relative}
+.video-label{font-size:14px;font-weight:600;color:var(--text);margin-bottom:10px}
+video{width:100%;border-radius:var(--radius-sm);background:#000;display:block}
+
+/* 视频观看状态角标 */
+.video-flag{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;
+  background:#FEF3C7;color:#B45309;border:1px solid #FCD34D;margin-bottom:8px}
+.video-flag.done{background:#ECFDF5;color:#065F46;border-color:#A7F3D0}
+
+/* 章节视频观看进度条 */
+.video-status-bar{font-size:13px;line-height:1.7;padding:10px 14px;border-radius:8px;margin:20px 0;
+  background:#FFFBEB;border-left:4px solid var(--accent)}
+.video-status-bar .vs-ok{color:#065F46;font-weight:600}
+.video-status-bar .vs-pending{color:#92400E;font-weight:600}
+
+/* 侧边栏锁定项：加锁图标与禁止指针，并在 hover 时提示原因 */
+.nav-section.locked{cursor:not-allowed;opacity:.6}
+.nav-section.locked .nav-icon::after{content:'🔒';font-size:11px;margin-left:2px}
+
+/* 学习目标卡 */
+.goal-card{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-left:4px solid var(--primary);
+  padding:20px 24px;border-radius:var(--radius-sm);margin:0 0 20px}
+.goal-card h3{font-size:16px;font-weight:700;color:var(--primary-dark);margin-bottom:10px}
+.goal-card ul{margin:8px 0 0 20px}
+.goal-card li{margin-bottom:6px;font-size:14.5px}
+
+/* 边看边记卡 */
+.note-card{background:var(--accent-light);border-left:4px solid var(--accent);
+  padding:18px 22px;border-radius:0 8px 8px 0;margin:20px 0}
+.note-card h3{font-size:15px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.note-card ul{margin:6px 0 0 20px}
+.note-card li{margin-bottom:5px;font-size:14px}
+
+/* 练习规则卡 */
+.quiz-rule-card{background:var(--primary-light);border-left:4px solid var(--primary);
+  padding:16px 20px;border-radius:0 8px 8px 0;margin:16px 0}
+.quiz-rule-card ul{margin:4px 0 0 20px}
+.quiz-rule-card li{margin-bottom:5px;font-size:14px}
+
+/* 章内练习进度条 */
+.quiz-progress-bar{display:flex;align-items:center;gap:12px;margin:16px 0;font-size:13px;color:var(--text-secondary)}
+.quiz-progress-bar .qp-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.quiz-progress-bar .qp-fill{height:100%;background:var(--primary);border-radius:4px;transition:width .4s ease}
+
+/* 内容更新提示卡（视频口径与白皮书/最新口径不一致处，统一用此卡标注） */
+.note-card.update-notice{background:#FFF7ED;border-left:5px solid #F59E0B;border-radius:0 8px 8px 0}
+.note-card.update-notice .un-title{font-size:15px;font-weight:700;color:#B45309;margin-bottom:8px}
+.note-card.update-notice p{font-size:14px;margin:5px 0;color:#7C2D12}
+.note-card.update-notice strong{color:#9A3412}
+.note-card.update-notice::after{content:'📖 以白皮书为准';display:inline-block;font-size:11.5px;font-weight:700;
+  color:#B45309;background:#FDE68A;border:1px solid #FCD34D;border-radius:999px;padding:2px 10px;margin-top:8px}
+
+/* 移动端 */
+@media(max-width:1024px){
+  .video-status-bar{font-size:12.5px;padding:10px 12px}
+  .note-card.update-notice p{font-size:13.5px}
+}
+
+</style>
+</head>
+<body>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<button class="sidebar-close-btn" onclick="toggleSidebar()">✕</button>
+<div class="sidebar-header"><h3>LP 培训微课</h3><div class="course-title">豌豆产品介绍（下）</div></div>
+<div class="study-timer"><span class="timer-icon">⏱</span><div><div class="timer-display" id="timerDisplay">00:00</div><div class="timer-label">学习时长</div></div></div>
+<div class="sidebar-progress"><div class="progress-label"><span>学习进度</span><span id="progressPercent">0%</span></div><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div></div>
+<div class="sidebar-nav" id="sidebarNav"></div>
+<div class="sidebar-footer">豌豆思维 · 国内 LP 培训</div>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="mobile-header" id="mobileHeader"><button style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer" onclick="toggleSidebar()">☰</button><span style="font-weight:700;font-size:15px" id="mhTitle">豌豆产品介绍（下）</span><span style="font-size:13px;color:#94a3b8" id="mhTimer">⏱ 00:00</span></div>
+<div class="main" id="mainContent"></div>
+
+<!-- Certificate -->
+<div class="cert-overlay" id="certOverlay">
+<div class="cert-paper" id="certPaper">
+<h1>🏆 结业证书</h1><div class="sub">CERTIFICATE OF COMPLETION</div>
+<div class="body"><p>兹证明</p><p class="name" id="certStudentName">请填写姓名</p><p>已完成 豌豆思维 班主任培训课程</p><p class="course">「豌豆产品介绍（下）」</p><p class="score" id="certScore">培训视频：已完整观看</p><p class="final-score" id="certFinalScore">配套练习：-- 分</p>
+<div class="cert-name-edit" id="certNameEdit" style="display:none;margin:16px auto 0;max-width:280px"><input type="text" id="certNameInput" placeholder="请输入你的姓名" style="width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;text-align:center" maxlength="20"><button class="btn btn-sm" style="margin-top:10px;width:100%" onclick="saveCertName()">✍️ 确认姓名</button></div></div>
+<div class="cert-footer"><span id="certDate"></span><span>豌豆思维</span></div>
+<div class="cert-actions"><button class="btn" onclick="printCertificate()">🖨️ 打印证书</button><button class="btn btn-outline" onclick="closeCertificate()">关闭</button></div>
+</div></div>
+
+<button class="notes-toggle" onclick="toggleNotes()">📝</button>
+<div class="notes-panel" id="notesPanel">
+<h3>📝 学习笔记 — <span id="notesChapterLabel" style="font-weight:400;font-size:13px;color:var(--text-secondary)"></span></h3>
+<textarea id="notesTextarea" placeholder="在这里记录你的学习心得..."></textarea>
+<button class="btn btn-outline" onclick="toggleNotes()" style="margin-top:12px;width:100%">关闭</button>
+</div>
+
+<!-- ===== 课程数据（JSON） ===== -->
+<script id="appDataJson" type="application/json">{"title":"豌豆产品介绍（下）","lsPrefix":"cn_lp_product_down","orgName":"豌豆思维","videoMaxRate":1.25,"sections":[{"id":"s1","title":"看视频 · 产品下","duration":"约 57 分钟","icon":"1","type":"video","content":"\n<div class=\"goal-card\">\n  <h3>🎯 学习目标</h3>\n  <p>看完这节课，你要能做到：</p>\n  <ul>\n    <li>把 <strong>班型、课时、排课、请假补课</strong> 这些高频规则说准，尤其满班人数、课时长度、预排节数不能记错；</li>\n    <li>讲清 <strong>有效期、休学、退费挽单</strong> 的处理流程和归属，知道什么情况该找谁；</li>\n    <li>说清 <strong>教具教材的发放与寄送、豌豆币的用法</strong>，以及 <strong>V8→V9 课件升级</strong> 变了什么。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🎬 完整视频：产品下（约 57 分钟）</h2>\n  <p>视频为培训现场实录，请<strong>完整观看</strong>（不可拖动快进，看满后可解锁下一章）。建议边看边对照下方的要点导读。</p>\n  <div class=\"video-wrapper\">\n    <!-- 视频超出 GitHub Pages 单文件直传限制，放在本仓库 Release 资源里引用 -->\n    <video controls preload=\"metadata\" playsinline>\n      <source src=\"https://github.com/ruanqiaoyun0-a11y/cn-lp-product-down/releases/download/v1.0/product-down.mp4\" type=\"video/mp4\">\n      你的浏览器不支持视频播放。\n    </video>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📌 本视频要点导读</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>看视频时重点抓这几条</th><th>对应章节</th></tr></thead>\n      <tbody>\n        <tr><td>班型与课时：满班人数、单课时长、授课语言、可选时段</td><td>第 2 章</td></tr>\n        <tr><td>排课规则：新生插班、老生调班、复课 4x-3 讲、开班节奏</td><td>第 3 章</td></tr>\n        <tr><td>请假与补课：请假时间、次数与扣课时、AI 补课不扣课时</td><td>第 4 章</td></tr>\n        <tr><td>有效期与休学：有效期怎么算、停课释放学位</td><td>第 5 章</td></tr>\n        <tr><td>教具教材与豌豆币：分批寄送、8000 豌豆币＝1 节直播课</td><td>第 7、8 章</td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"note-card update-notice\">\n  <p class=\"un-title\">⚠️ 内容更新提示 · 满班人数（务必以本课口径为准）</p>\n  <p>🔊 视频 / 课件中为：<strong>「S1 到 S2 是六人班，S3 到 S9 是八人班」</strong></p>\n  <p>✅ 正确口径：<strong>S1 满班 6 人；S2-S9 满班 8 人。</strong></p>\n  <p>📖 请以白皮书为准，避免向家长传达错误信息（对应知识点 P-14）。</p>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💡 怎么用这段视频</strong>\n  <p>这一课讲的多是<strong>规则口径</strong>，错一个字就可能给家长错误承诺。第一遍先看整体流程，第二遍按「一、二、三」的节点核对细节。凡是视频里与橙色提示卡冲突的地方，一律按提示卡。</p>\n</div>\n"},{"id":"s2","title":"班型与课程设置","duration":"8-10 分钟","icon":"2","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">👥 班型与课时长度</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>项目</th><th>口径</th></tr></thead>\n      <tbody>\n        <tr><td>S1 满班人数</td><td><strong>6 人</strong></td></tr>\n        <tr><td>S2-S9 满班人数</td><td><strong>8 人</strong></td></tr>\n        <tr><td>S1 单课时长</td><td><strong>30 分钟</strong>/课时</td></tr>\n        <tr><td>S2-S9 单课时长</td><td><strong>40 分钟</strong>/课时</td></tr>\n      </tbody>\n    </table>\n  </div>\n  <p><strong>开新班门槛</strong>：需满足班级人数 <strong>50%</strong> 才开班。即 S1 需满 3 人、S2-S9 需满 4 人。日常排课<strong>首选插班</strong>，不建议开新班。</p>\n</div>\n\n<div class=\"note-card update-notice\">\n  <p class=\"un-title\">⚠️ 内容更新提示 · 满班人数</p>\n  <p>🔊 视频（00:01:30、00:11:57）与课件中为：「S1 到 S2 是六人班，S3 到 S9 是八人班」</p>\n  <p>✅ 正确口径：<strong>S1 满班 6 人；S2-S9 满班 8 人。</strong></p>\n  <p>📖 请以白皮书为准（知识点 P-14）。这一条最容易被家长追问，务必记准。</p>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🌐 授课语言与上课时间</h2>\n  <ul>\n    <li><strong>授课语言</strong>：普通话、粤语、全英、中英（中教 / 外教）；中国台湾地区为台湾普通话配繁体课件。</li>\n    <li><strong>可选时间</strong>：周一至周日（北京时间）<strong>7:00 至 24:00</strong>，多个时段可选。</li>\n    <li><strong>上课节奏</strong>：固定一周 2 节课；<strong>固定老师、固定班级、固定学伴</strong>。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 可选上课时间</p>\n    <p>🔊 视频（00:12:16）中为：「可选上课时间从上午 10 点到晚上 8 点 10 分」</p>\n    <p>✅ 正确口径：<strong>周一至周日（北京时间）7:00 至 24:00，多个时段可选。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-17）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🗓 系统预排</h2>\n  <p>系统会自动预排未来 <strong>7 节课</strong>，提前消耗 <strong>7 课时</strong>，但这<strong>并非真实划扣</strong>，只是帮孩子占学位；<strong>上一节课才消耗一节课时</strong>。</p>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 系统预排节数</p>\n    <p>🔊 视频（00:15:39）中为：「系统会自动预排后续的<strong>八级</strong>课」</p>\n    <p>✅ 正确口径：<strong>系统自动预排未来 7 节课。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-18）。</p>\n  </div>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「我们是小班，S1 一个班最多 6 个孩子，S2 往上最多 8 个。上课时间是每天早上 7 点到晚上 12 点，您可以挑方便的时段，固定在同一个班、同一个老师、同一批同学。」</p>\n</div>\n"},{"id":"s3","title":"排课规则与分层","duration":"8-10 分钟","icon":"3","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🔀 新生与老生排课</h2>\n  <ul>\n    <li><strong>新生</strong>：前端销售签单后，家长确认开课时间，由<strong>教务排课</strong>，排好后才流转至 LP 服务；LP 需要核对上课时间是否有误。</li>\n    <li><strong>老生</strong>：因时间、老师、级别不合适造成调班，由 <strong>LP 发起调课</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📈 排课进度怎么对</h2>\n  <ul>\n    <li>新生<strong>插班</strong>到现有进度的老生班，<strong>并非从所定级别的第一节课开始</strong>。</li>\n    <li>新生首课一定是<strong>专题第一讲</strong>，并随当前教学进度走。</li>\n    <li>老生换级别、新生插班，都从<strong>当前进度插入</strong>；老生换老师、换时间不涉及知识点变化，按原进度继续。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 复课与螺旋上升</h2>\n  <ul>\n    <li>老生停课后复课，需符合 <strong>4x-3 讲</strong>，即从<strong>新专题的第一讲（单数）</strong>插班（X 为专题数）。</li>\n    <li>课程难度<strong>螺旋式上升</strong>：专题与专题之间无直接关系，但讲次与讲次之间必然联系；每个 <strong>4 节课</strong>为一个完整专题，<strong>专题第一讲一定是单数</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🧱 科学分层与开班节奏</h2>\n  <ul>\n    <li>共 <strong>9 个级别</strong>，每个级别 <strong>96 节课</strong>，分 <strong>A、B、C、D 四个阶段</strong>；每阶段 <strong>6 个专题</strong>，每专题 <strong>4 讲次</strong>；一个级别共 <strong>24 个专题</strong>。</li>\n    <li>所有新级别在 <strong>6 月 30 日（最后一个周末）至 7 月初</strong> 开始进入新级别学习；7 月滚动开班，8 月起顺着前面的顺序继续。</li>\n    <li>96 节课结束后，剩余周次安排衔接 / 进阶课程。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💡 一句话记住</strong>\n  <p>「4 节课一个专题、第一讲是单数」——所以复课要在 4x-3 讲插班，才能从新专题的第一讲接上。</p>\n</div>\n"},{"id":"s4","title":"请假与补课","duration":"8-10 分钟","icon":"4","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📅 请假规则</h2>\n  <ul>\n    <li>建议家长<strong>提前 24 小时</strong>请假，最晚可自主通过<strong>豌豆素质家长端</strong>操作（课程协议规定提前 <strong>3 小时</strong>）。</li>\n    <li><strong>课前 15 分钟</strong>起，家长与 LP 均无法操作请假；<strong>主讲老师可以操作</strong>（因为考勤由主讲老师在课后填写）。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔢 请假次数与课时</h2>\n  <ul>\n    <li><strong>不同课包请假次数不同</strong>：课时多的课包请假次数多，课时少则少，以后台数据为准。</li>\n    <li>在请假次数内请假：<strong>扣请假次数，不扣课时</strong>。</li>\n    <li>超出请假次数后请假：改为<strong>扣课时</strong>，每次请假扣 1 个课时。</li>\n    <li>课包之间的请假次数<strong>不叠加</strong>，不能用下一个课包的次数补上一个课包。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">💳 课时消耗与旷课</h2>\n  <ul>\n    <li><strong>课时消耗原则</strong>：按<strong>课时获得的先后顺序</strong>消耗。</li>\n    <li><strong>旷课</strong>：扣 1 课时。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 课时消耗顺序</p>\n    <p>🔊 视频（00:33:45）中为：「同一课包内<strong>先消耗购买的正课，后消耗赠送的课程</strong>」</p>\n    <p>✅ 正确口径：<strong>按课时获得的先后顺序消耗。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-25）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 补课</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>补课方式</th><th>说明</th><th>是否扣课时</th></tr></thead>\n      <tbody>\n        <tr><td>直播补课</td><td>插班真人补课，由 LP 安排</td><td><strong>扣课时</strong></td></tr>\n        <tr><td>AI 补课</td><td>课程回放，<strong>仅在请假状态下</strong>可生成</td><td><strong>不扣课时</strong></td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「在您课包规定的请假次数内请假，只扣请假次数、不扣课时；超出次数之后才会扣课时。另外 AI 补课是看回放，不扣课时；插班真人补课才会扣。」</p>\n</div>\n"},{"id":"s5","title":"有效期与休学","duration":"6-8 分钟","icon":"5","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">⏳ 课程有效期</h2>\n  <ul>\n    <li>不同课包对应<strong>不同有效期</strong>，<strong>自排课起开始计算</strong>（含等班、休学等时间），所以通常比实际上课时间长一些。</li>\n    <li>合同与后台均可查看。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🛑 休学（停课）规则</h2>\n  <ul>\n    <li><strong>不同课包对应不同停课机会</strong>，一次办理<strong>不超过 30 天</strong>。</li>\n    <li>第 31 天未排课，会自动按<strong>每周 2 节</strong>划扣课时；特殊情况可延长。</li>\n    <li>停课后<strong>立即释放学位</strong>；复课需<strong>重新排课</strong>，<strong>无法保证回到原老师班级</strong>，班主任需提前告知家长。</li>\n    <li>休学期间的课<strong>无法补课</strong>（对应课件已锁定，进度已往前推进）。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 休学次数</p>\n    <p>🔊 视频（00:28:58）中为：「休学有<strong>一次</strong>停课机会，不超过 30 天」</p>\n    <p>✅ 正确口径：<strong>不同课包对应不同停课机会，一次办理不超过 30 天。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-29）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📋 其他规则</h2>\n  <ul>\n    <li><strong>一个账号只能一个学生上课。</strong></li>\n    <li><strong>1V1 课包</strong>：正常耗课 1 次扣 <strong>4 课时</strong>；如果排成了小班，就按正常 <strong>1 课时 1 次</strong>扣；排课由教务进行。</li>\n  </ul>\n</div>\n"},{"id":"s6","title":"退费与挽单","duration":"6-8 分钟","icon":"6","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🤝 挽单归属</h2>\n  <ul>\n    <li><strong>四节课内</strong>：由 <strong>CC 挽单</strong>。</li>\n    <li><strong>四节课外</strong>：由 <strong>LP 挽单</strong>。</li>\n    <li>LP 挽单必须有完整的<strong>一挽、二挽流程</strong>；挽单失败后 <strong>48 小时内</strong>由 OA 发起退费申请。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">💰 退费计算与时效</h2>\n  <ul>\n    <li>新生在 <strong>4 节课内</strong>：无忧试学，<strong>全额退费</strong>。</li>\n    <li>超过 4 节课退费：<strong>购买价格 ÷ 基础直播课时（不含赠课）× 已上课时</strong> ＝ 扣费金额，以系统自动结算为准。</li>\n    <li><strong>退款时效</strong>：一般原路退回，统一口径 <strong>2-3 周</strong>；如遇特殊情况需财务线下打款，统一口径约 <strong>1 个月</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「退费按合同和系统结算来，一般是原路退回，2-3 周能到账；如果走财务线下打款，大概 1 个月。我先帮您把情况登记清楚，流程我全程跟着。」</p>\n</div>\n"},{"id":"s7","title":"教具教材与寄送","duration":"6-8 分钟","icon":"7","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📚 教材构成</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>教材</th><th>覆盖级别</th><th>说明</th></tr></thead>\n      <tbody>\n        <tr><td>豌豆宝典</td><td>S1-S9</td><td>分四个部分：要点总结、分环节实战练习（三星/五星难度分层）、学习笔记、大开眼界</td></tr>\n        <tr><td>计算专项突破</td><td>S4-S9</td><td>一季度一册，一年 4 册，一周练 3 次，爬坡式训练，明确标注第一周/第二周/第三周</td></tr>\n        <tr><td>全年课程图谱</td><td>S4-S9</td><td>标注每个板块属于校内、进阶还是奥数，方便给家长做课程规划</td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🧸 教具</h2>\n  <ul>\n    <li><strong>S1-S3</strong> 发放<strong>亲子教具</strong>（课后亲子思维游戏）；原「思维互动卡、自由闯关图、习惯表」已停发，改为计算专项突破。</li>\n    <li>教具不会玩时，可在与教研对接的群内索取<strong>指导视频</strong>，再转发给家长。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📦 寄送规则</h2>\n  <ul>\n    <li>由仓库按 <strong>A、B、C、D 每个阶段的首页分批发货</strong>，不一次性寄送；按实际排课讲次发放（如从 B1 开始就发 B1 至 B6，从 B5 开始就发 B5 至 B6）。</li>\n    <li><strong>不与家长保证开课前一定收到教材</strong>，一般开课前后 3 天到货；因每 4 节课才做一次练习，晚到不影响学习，先安抚家长并在仓库对接群催促发货。</li>\n    <li>家长着急时，可下载对应进度的<strong>电子教材</strong>发给家长；注意下载链接含内部资料，<strong>不要直接转发链接</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 兑换课时</h2>\n  <ul>\n    <li><strong>国内学员</strong>：教具教材是免费寄送的福利，<strong>不支持兑换课时</strong>。</li>\n    <li><strong>海外与中国台湾地区学员</strong>：因海运 / 空运成本较高，可将这部分运费<strong>折成课时返还</strong>。</li>\n  </ul>\n</div>\n"},{"id":"s8","title":"豌豆币","duration":"5-6 分钟","icon":"8","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🪙 豌豆币是什么</h2>\n  <ul>\n    <li><strong>定义</strong>：豌豆商城中的一种积分称呼。</li>\n    <li><strong>用途</strong>：可在豌豆商城兑换实物礼品、直播课或录播课。</li>\n    <li><strong>兑换比例</strong>：<strong>8000 豌豆币兑换 1 节直播课</strong>；每日兑换上限 <strong>3 节</strong>。</li>\n    <li><strong>获取途径</strong>：购买正课课包、参加打卡、转介绍、视听。</li>\n    <li><strong>使用端</strong>：只能在<strong>家长端</strong>使用；学生端可以生成订单但只有选择权，订单进入家长端由家长确认（学生端可选的都是实物礼品）。</li>\n    <li><strong>有效期</strong>：<strong>次年 12 月 31 日清零</strong>（1-2 年不等）。每年 12 月起，APP、公众号与班主任都会提醒家长兑换。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「豌豆币是商城里的积分，8000 个可以换 1 节直播课，一天最多换 3 节。买课、打卡、转介绍、试听都能攒，不过要记得年底前用掉，过了 12 月 31 日就清零了。」</p>\n</div>\n"},{"id":"s9","title":"课件升级（V8→V9）","duration":"5-6 分钟","icon":"9","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🆕 V8 版本（2025 年 7 月）</h2>\n  <ul>\n    <li><strong>升级一 · 体系 / 内容升级</strong>：进一步完善校内、拓展、奥数难度规划，从课纲、内容、方法进行调整。</li>\n    <li><strong>升级二 · 课件语种完善</strong>。</li>\n    <li><strong>升级三 · 学习闭环配套升级</strong>：级别覆盖 S4-S7，简体 / 繁体，以口算、笔算、脱式计算为训练核心，学练拓测四步循环持续训练。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🚀 V9 版本（现行）</h2>\n  <ul>\n    <li><strong>升级一 · 课程适配度升级</strong>：S4-S7 难度和课节删减（总框架不变，特色课程保留，超纲和难度过高课程删减）；V8 版本的 S7 级别校内课程严重缺失，新增北美和新加坡四年级校内内容重难点；S8 新增英文课件，本地化语言，内容向海外课纲做难度靠近。</li>\n    <li><strong>升级二 · AI 监控加动态分析</strong>：教研可通过 AI 看到学生的<strong>首答率、末答率</strong>等课程数据，灵活调整课程内容的难度设置，从而提升效果。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 课件版本</p>\n    <p>🔊 视频以 <strong>V8</strong> 为主线讲解，且<strong>未讲到课件升级</strong>。</p>\n    <p>✅ 正确口径：现行最新版本为 <strong>V9</strong>，请以 V9 口径为准（知识点 P-36、P-37）。</p>\n    <p>📖 请以白皮书为准。</p>\n  </div>\n</div>\n"},{"id":"s10","title":"内容更新总表","duration":"3-5 分钟","icon":"10","type":"content","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📌 内容更新总表</h2>\n  <p>本课视频录制于较早版本，以下内容与现行口径不一致。<strong>凡不一致处一律以白皮书 / 本课为准</strong>，避免向家长传达错误信息。</p>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>#</th><th>视频时间点</th><th>视频中的说法</th><th>正确口径</th><th>知识点</th></tr></thead>\n      <tbody>\n        <tr><td>1</td><td>00:01:30 / 00:11:57</td><td>S1 到 S2 是六人班，S3 到 S9 是八人班</td><td><strong>S1 满班 6 人；S2-S9 满班 8 人</strong></td><td>P-14</td></tr>\n        <tr><td>2</td><td>00:15:39</td><td>系统自动预排后续的八级课</td><td>系统自动预排未来 <strong>7 节课</strong></td><td>P-18</td></tr>\n        <tr><td>3</td><td>00:12:16</td><td>可选上课时间从上午 10 点到晚上 8 点 10 分</td><td>周一至周日 <strong>7:00 至 24:00</strong>，多个时段</td><td>P-17</td></tr>\n        <tr><td>4</td><td>00:28:58</td><td>休学有一次停课机会，不超过 30 天</td><td><strong>不同课包对应不同停课机会</strong>，一次不超过 30 天</td><td>P-29</td></tr>\n        <tr><td>5</td><td>00:33:45</td><td>同一课包内先消耗购买的正课，后消耗赠送的课程</td><td><strong>按课时获得的先后顺序</strong>消耗</td><td>P-25</td></tr>\n        <tr><td>6</td><td>全片结构</td><td>只讲行课规则、学习环节、教具教材、豌豆币</td><td>现行还包含<strong>退费与挽单、课件升级</strong>，需一并掌握</td><td>P-32 至 P-37</td></tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"tips-box\">\n    <strong>💡 一句话记住</strong>\n    <p>看到橙色「内容更新提示」卡片，就说明这里视频是旧口径——按卡片上的正确口径跟家长说。</p>\n  </div>\n</div>\n"},{"id":"s11","title":"练习检测","duration":"15-18 分钟","icon":"11","type":"content_quiz","content":"\n<p>这一章用来检测你对本课的掌握程度，共 <strong>9 道题</strong>：6 道综合知识题（每题 4 分）＋ 3 道「向家长说明规则」情境应用题（每题 10 分）。</p>\n<div class=\"quiz-rule-card\">\n  <ul>\n    <li>题目<strong>一道一道解锁</strong>：答对当前这题，才会出现下一题；</li>\n    <li><strong>计分</strong>：首次答对得该题满分；答错后重新作答答对了，得该题一半分；</li>\n    <li>答错可以<strong>重新作答</strong>，不限制次数，页面不会直接告诉你正确答案；</li>\n    <li>页面实时显示你的实际得分，9 道全部答完，本章完成。</li>\n  </ul>\n</div>\n<p>题目全部来自视频和课件讲过的内容。拿不准时，回顾第 2-10 章即可。</p>\n"}],"chapterQuizzes":[[],[{"q":"当前满班人数的正确口径是？","opts":["S1-S2 满班 6 人，S3-S9 满班 8 人（视频中的旧说法）","S1 满班 6 人，S2-S9 满班 8 人","所有级别满班 6 人","所有级别满班 8 人"],"correct":1,"score":4,"feedback_correct":"✅ 对。S1 满班 6 人，S2-S9 满班 8 人。","feedback_wrong":"❌ 正确口径是 S1 满班 6 人、S2-S9 满班 8 人。视频里「S1 到 S2 是六人班」是旧说法。建议回顾第 2 章。"},{"q":"各阶段的单课时长是？","opts":["S1 40 分钟，S2-S9 30 分钟","S1 30 分钟/课时，S2-S9 40 分钟/课时","所有级别都是 30 分钟","所有级别都是 45 分钟"],"correct":1,"score":4,"feedback_correct":"✅ 对。S1 为 30 分钟/课时，S2-S9 为 40 分钟/课时。","feedback_wrong":"❌ S1 是 30 分钟/课时，S2-S9 是 40 分钟/课时。低龄段课时更短，是为了匹配孩子的专注时长。建议回顾第 2 章。"},{"q":"关于系统自动预排课程，正确的是？","opts":["系统自动预排未来 8 节课","系统自动预排未来 7 节课，提前消耗 7 课时，但并非真实划扣","系统不预排课程","预排的课时会被真实划扣"],"correct":1,"score":4,"feedback_correct":"✅ 对。预排 7 节，提前消耗 7 课时但不真实划扣，上一节课才消耗一节课时。","feedback_wrong":"❌ 预排的是未来 7 节课（视频里说「八级课」是旧说法），且预排只是占学位、不是真实划扣。建议回顾第 2 章。"}],[{"q":"关于新生排课，下列描述正确的是？","opts":["新生从所定级别的第一节课开始学习","新生插班到现有进度的老生班，并非从第一节课开始，且首课一定是专题第一讲","新生单独开班，不插班","新生排课由 LP 直接决定，无需教务"],"correct":1,"score":4,"feedback_correct":"✅ 对。新生插班到现有进度的老生班，首课是专题第一讲。","feedback_wrong":"❌ 新生是插班到现有进度的老生班，不是从第一节课开始；首课一定落在专题第一讲。排课由教务负责，LP 核对时间。建议回顾第 3 章。"},{"q":"老生停课后复课，需要符合哪条规则？","opts":["任意讲次都可以衔接","需符合 4x-3 讲，即从新专题的第一讲（单数）插班","只能从第 1 讲重新开始","由家长自由选择插入讲次"],"correct":1,"score":4,"feedback_correct":"✅ 对。复课需符合 4x-3 讲，从新专题第一讲（单数）插班。","feedback_wrong":"❌ 复课要在 4x-3 讲插班，也就是新专题的第一讲（单数），不能随便接。建议回顾第 3 章「复课与螺旋上升」。"},{"q":"关于豌豆的科学分层，下列哪项不正确？","opts":["共 9 个级别","每个级别分 5 个阶段","每个级别共 24 个专题","每个专题 4 讲次"],"correct":1,"score":4,"feedback_correct":"✅ 对。「5 个阶段」是错的，应为 A、B、C、D 四个阶段。","feedback_wrong":"❌ 每个级别分 A、B、C、D 四个阶段（不是 5 个）。4 阶段 × 每阶段 6 个专题 ＝ 24 个专题，每专题 4 讲次。建议回顾第 3 章。"}],[{"q":"家长最晚可自主通过豌豆素质家长端请假的时间是？","opts":["提前 24 小时","课程协议规定的提前 3 小时（建议提前 24 小时）","课前 15 分钟","开课后 10 分钟内"],"correct":1,"score":4,"feedback_correct":"✅ 对。协议口径是提前 3 小时，建议家长尽量提前 24 小时。","feedback_wrong":"❌ 家长端最晚可提前 3 小时操作（建议提前 24 小时）。课前 15 分钟起家长与 LP 都无法操作。建议回顾第 4 章「请假规则」。"},{"q":"关于请假与课时的关系，正确的是？","opts":["任何请假都扣课时","在课包规定的请假次数内请假，扣次数不扣课时；超出次数后请假扣课时","请假次数可以跨课包累加使用","请假永远不扣课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。次数内不扣课时，超出后才扣课时，且次数不跨课包叠加。","feedback_wrong":"❌ 次数内请假只扣次数、不扣课时；超出次数后才扣课时；且课包之间的请假次数不叠加。建议回顾第 4 章「请假次数与课时」。"},{"q":"下列哪种情况不扣课时？","opts":["旷课","直播补课（插班真人补课）","AI 补课（课程回放）","正常上课"],"correct":2,"score":4,"feedback_correct":"✅ 对。AI 补课（课程回放）不扣课时。","feedback_wrong":"❌ AI 补课是看回放，不扣课时；直播补课（插班真人补课）与旷课都要扣课时。建议回顾第 4 章「补课」。"}],[{"q":"关于休学（停课）规则，正确的是？","opts":["停课后学位保留，复课一定回原老师班级","不同课包对应不同停课机会，一次办理不超过 30 天；停课立即释放学位，复课需重新排课，不保证回原班级","停课不释放学位","停课次数不限且不消耗课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。不同课包不同停课机会，一次不超过 30 天，停课立即释放学位、复课需重新排课。","feedback_wrong":"❌ 停课机会随课包而定（不是「只有一次」），一次不超过 30 天；停课后立即释放学位，复课需要重新排课，不保证回原班级。建议回顾第 5 章。"},{"q":"课程有效期如何计算？","opts":["从首次上课日算起","不同课包对应不同有效期，自排课起开始计算，合同可查看","统一为购买日起 1 年","由班主任自由设置"],"correct":1,"score":4,"feedback_correct":"✅ 对。有效期自排课起计算，不同课包不同。","feedback_wrong":"❌ 有效期是自<strong>排课</strong>起开始计算的（含等班、休学等时间），不同课包对应的有效期不同，合同与后台都能查。建议回顾第 5 章。"}],[{"q":"关于退费挽单的归属，正确的是？","opts":["所有退费均由 LP 挽单","四节课内由 CC 挽单，四节课外由 LP 挽单","四节课内由 LP 挽单，四节课外由 CC 挽单","由家长自行选择挽单人"],"correct":1,"score":4,"feedback_correct":"✅ 对。四节课内 CC 挽单，四节课外 LP 挽单。","feedback_wrong":"❌ 归属按 4 节课划线：四节课内由 CC 挽单，四节课外由 LP 挽单，注意不要记反。建议回顾第 6 章「挽单归属」。"},{"q":"新生超过 4 节课后退费，扣费金额的计算方式是？","opts":["剩余课时乘以单价","购买价格除以基础直播课时（不含赠课）再乘以已上课时，以系统自动结算为准","全额退还，不扣费","按合同原价全额扣除"],"correct":1,"score":4,"feedback_correct":"✅ 对。购买价格 ÷ 基础直播课时（不含赠课）× 已上课时。","feedback_wrong":"❌ 扣费金额 ＝ 购买价格 ÷ 基础直播课时（不含赠课）× 已上课时，以系统自动结算为准。注意分母不含赠课。建议回顾第 6 章。"},{"q":"一般情况下退款到账的时间口径是？","opts":["3 个工作日","原路退回统一口径 2-3 周（特殊情况财务线下打款约 1 个月）","当天到账","6 个月"],"correct":1,"score":4,"feedback_correct":"✅ 对。原路退回 2-3 周，特殊情况线下打款约 1 个月。","feedback_wrong":"❌ 统一口径是原路退回 2-3 周；如遇特殊情况需财务线下打款，约 1 个月。不要随口承诺「几天到账」。建议回顾第 6 章。"}],[{"q":"关于教材与教具，下列说法正确的是？","opts":["计算专项突破所有级别都有","豌豆宝典 S1-S9 全有；计算专项突破仅 S4-S9 有；亲子教具仅 S1-S3 发放","所有级别都发放亲子教具","教材需要家长付费购买"],"correct":1,"score":4,"feedback_correct":"✅ 对。豌豆宝典 S1-S9、计算专项突破 S4-S9、亲子教具 S1-S3。","feedback_wrong":"❌ 覆盖范围是：豌豆宝典 S1-S9 全有，计算专项突破仅 S4-S9 有，亲子教具仅 S1-S3 发放。建议回顾第 7 章。"},{"q":"关于教具教材兑换课时，正确的是？","opts":["国内学员均可用教材兑换课时","国内学员不可兑换课时（教具教材为免费福利）；海外与中国台湾地区学员因运费成本可将运费折成课时","所有人都不可以兑换","兑换比例是 8000 教材等于 1 课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。国内不兑换课时，海外与中国台湾地区可将运费折成课时。","feedback_wrong":"❌ 国内学员的教具教材是免费寄送福利，不兑换课时；只有海外与中国台湾地区学员因海运/空运成本较高，可将运费折成课时。建议回顾第 7 章「兑换课时」。"}],[{"q":"关于豌豆币，下列说法正确的是？","opts":["1000 豌豆币兑换 1 节直播课","8000 豌豆币兑换 1 节直播课，每日兑换上限 3 节","豌豆币可长期有效，不清零","学生端可直接用豌豆币兑换直播课"],"correct":1,"score":4,"feedback_correct":"✅ 对。8000 豌豆币＝1 节直播课，每日上限 3 节。","feedback_wrong":"❌ 兑换比例是 8000 豌豆币换 1 节直播课，每日上限 3 节；豌豆币会清零，且只能在家长端使用。建议回顾第 8 章。"},{"q":"豌豆币的有效期规则是？","opts":["永久有效","次年 12 月 31 日清零（1-2 年不等）","当年 6 月 30 日清零","3 年后清零"],"correct":1,"score":4,"feedback_correct":"✅ 对。豌豆币于次年 12 月 31 日清零。","feedback_wrong":"❌ 豌豆币在次年 12 月 31 日清零（1-2 年不等）。每年 12 月起 APP、公众号与班主任都会提醒家长兑换。建议回顾第 8 章。"}],[{"q":"关于课件版本，下列说法正确的是？","opts":["现行最新版本是 V8","现行最新版本是 V9（V8 为 2025 年 7 月的上一版本）","V9 与 V8 完全一致","目前尚未有版本升级"],"correct":1,"score":4,"feedback_correct":"✅ 对。现行最新版本是 V9，V8 为 2025 年 7 月的上一版本。","feedback_wrong":"❌ 现行最新版本是 V9。视频以 V8 为主线且未讲升级，容易被带偏。建议回顾第 9 章。"},{"q":"V9 版本升级中，与「AI 监控加动态分析」相关的内容是？","opts":["增加动画 IP 角色","教研可通过 AI 监控看到学生的首答率、末答率等数据，灵活调整课程难度","增加外教直播","取消所有奥数内容"],"correct":1,"score":4,"feedback_correct":"✅ 对。V9 的 AI 监控可看首答率、末答率，用于动态调整难度。","feedback_wrong":"❌ V9 的「AI 监控加动态分析」指教研可看到学生的首答率、末答率等数据，据此灵活调整课程难度。建议回顾第 9 章。"}],[],[{"q":"豌豆益智课程的授课语言不包括下列哪一项？","opts":["普通话","粤语","德语","全英与中英（中教、外教）"],"correct":2,"score":4,"feedback_correct":"✅ 对。授课语言包括普通话、粤语、全英、中英，不含德语。","feedback_wrong":"❌ 授课语言是普通话、粤语、全英、中英（中教/外教），没有德语。建议回顾第 2 章。"},{"q":"关于可选上课时间，正确的口径是？","opts":["每天上午 10:00 到晚上 20:10","周一至周日（北京时间）7:00 至 24:00，多个时段可选","仅周末可上课","每天固定 18:00 一节课"],"correct":1,"score":4,"feedback_correct":"✅ 对。周一至周日 7:00 至 24:00，多个时段可选。","feedback_wrong":"❌ 正确口径是周一至周日（北京时间）7:00 至 24:00。视频里「上午 10 点到晚上 8 点 10 分」是旧说法。建议回顾第 2 章。"},{"q":"课时消耗的原则是？","opts":["按时长最长的先消耗","按课时获得的先后顺序消耗","按家长指定顺序消耗","随机消耗"],"correct":1,"score":4,"feedback_correct":"✅ 对。按课时获得的先后顺序消耗。","feedback_wrong":"❌ 课时消耗按获得的先后顺序，不要沿用「先正课后赠课」的旧口径。建议回顾第 4 章。"},{"q":"关于 1V1 课包的耗课，正确的是？","opts":["1V1 每次扣 1 课时","1V1 正常耗课 1 次扣 4 课时；若排成小班则按 1 课时每次扣","1V1 不消耗课时","1V1 每次扣 8 课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。1V1 正常一次扣 4 课时，排成小班则按 1 课时每次扣。","feedback_wrong":"❌ 1V1 正常耗课 1 次扣 4 课时；如果排成了小班，就按正常 1 课时 1 次扣。排课由教务进行。建议回顾第 5 章。"},{"q":"关于账号使用，正确的说法是？","opts":["一个账号可绑定多个学生","一个账号只能一个学生上课","一个账号可同时供家长与孩子上课","账号可转让给他人使用"],"correct":1,"score":4,"feedback_correct":"✅ 对。一个账号只能一个学生上课。","feedback_wrong":"❌ 规则是「一个账号只能一个学生上课」。建议回顾第 5 章「其他规则」。"},{"q":"一位学员已上课 3 节，家长提出退费，正确处理是？","opts":["由 LP 直接发起退费，扣除全部费用","属于四节课内，由 CC 挽单；若确需退费，属无忧试学期，全额退费","由教务直接处理，无需挽单","拒绝受理"],"correct":1,"score":4,"feedback_correct":"✅ 对。四节课内由 CC 挽单；确需退费属无忧试学期，全额退费。","feedback_wrong":"❌ 3 节属于四节课内，应由 CC 挽单；若确需退费，属无忧试学期，可全额退费。建议回顾第 6 章。"},{"q":"家长说：「我们下个月要带孩子出国半个月，这段时间的课怎么办？」下列回应最合适的是？","opts":["「直接请假就行，随时可以回来接着上原来的班。」","「可以办理一次停课（休学），一次不超过 30 天。停课后学位会立即释放，复课时需要重新排课，可能无法回到原来的老师和班级，我先帮您评估一下时间。」","「出国就别上课了，回来重新报名。」","「可以一直挂着，不排课也不扣课时。」"],"correct":1,"score":10,"feedback_correct":"✅ 对。用休学规则回应：一次不超 30 天、释放学位、复课重排、不保证原班级，并主动帮家长评估时间。","feedback_wrong":"❌ 关键是讲清三件事：停课一次不超过 30 天、停课后释放学位、复课需重新排课且不保证原班级，再主动帮家长评估时间。A 承诺「随时回原班」是错的，D 说不扣课时也不符合规则。建议回顾第 5 章。"},{"q":"家长问：「孩子这周请了两次假，会不会扣课时？」下列回应最合适的是？","opts":["「请假一律扣课时。」","「在您课包规定的请假次数内请假，只扣请假次数、不扣课时；超出次数后才扣课时。另外 AI 补课（课程回放）是不扣课时的，直播补课才会扣。」","「请假不扣课时，随时都能补。」","「这个我查一下再回复您，具体规则我也不确定。」"],"correct":1,"score":10,"feedback_correct":"✅ 对。讲清次数内不扣课时、超出扣课时，并补充 AI 补课不扣课时。","feedback_wrong":"❌ 最好的回应是讲清「次数内只扣次数、不扣课时，超出才扣课时」，再补充 AI 补课不扣、直播补课才扣。A 与 C 都是绝对化说法，D 显得不专业。建议回顾第 4 章。"},{"q":"家长说：「我朋友是海外学员，教具教材可以换成课时，我们国内是不是也可以换？」下列回应最合适的是？","opts":["「可以，所有人都能兑换。」","「不确定，您自己在 APP 里试一下。」","「国内学员的教具教材是免费寄送的福利，不支持兑换课时；只有海外与中国台湾地区学员因为海运空运成本较高，我们会把这部分运费折成课时返还。您的豌豆宝典和计算专项突破，我们会按阶段分批寄到。」","「教具教材要另外收费，不能白送。」"],"correct":2,"score":10,"feedback_correct":"✅ 对。说明国内为免费福利不兑换，海外与中国台湾地区因运费可折课时，并给出分批寄送安排。","feedback_wrong":"❌ 正确回应是：国内教具教材是免费寄送福利、不兑换课时；只有海外与中国台湾地区学员因海运空运成本高，可将运费折成课时，同时说明教材按阶段分批寄送。A 承诺错误，B 把问题推给家长，D 与事实不符。建议回顾第 7 章。"}]]}</script>
+
+<!-- ===== 应用逻辑 ===== -->
+<script>
+// ============================================================
+// 《思维学习理念》新人训微课 · 应用逻辑
+// 数据从 #appDataJson 读取（JSON），避免转义问题
+// 结构：第 1 章 看视频（看完 95% 解锁）→ 第 2 章 配套练习（16 题计分，满分 100）
+// ============================================================
+const APP = JSON.parse(document.getElementById('appDataJson').textContent);
+const courseData = { title: APP.title, sections: APP.sections };
+const chapterQuizzes = APP.chapterQuizzes;
+
+// ---------------- 状态 ----------------
+const LS_PREFIX = APP.lsPrefix;
+let currentSection = 0;
+let completedSections = new Set();
+let chapterQuizDone = new Array(chapterQuizzes.length).fill(false);
+let chapterQuizAnswers = {};   // { 'chIdx_qi': { selected, isCorrect } }
+let quizMissed = {};           // { 'chIdx_qi': true } —— 该题首答曾答错（重答对了得一半分）
+
+// 视频观看追踪：视频按 DOM 顺序编号，索引与所在章节一一对应
+// videoMeta[i] = { idx, chIdx, src }
+// videoWatched: Set<videoIdx> —— 已「完整观看」的视频
+// videoMaxTime: { videoIdx: seconds } —— 已连续观看到的最高播放位置
+let videoMeta = [];
+let videoWatched = new Set();
+let videoMaxTime = {};
+const VIDEO_WATCH_RATIO = 0.95;        // 播放至 95% 即视为看完（末段黑屏/片尾不计）
+const VIDEO_MAX_RATE = APP.videoMaxRate || 1.25;   // 倍速上限：最快 1.25 倍速
+
+let studySeconds = 0; let timerInterval = null;
+
+// ---------------- 工具函数 ----------------
+function escapeHtml(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// ============================================================
+// 初始化
+// ============================================================
+function init() {
+  renderSidebar();
+  renderSections();
+  initVideoTracking();
+  // 首次进入（无历史进度）也要初始化练习进度条/状态条
+  for (let i = 0; i < chapterQuizzes.length; i++) {
+    if (chapterQuizzes[i] && chapterQuizzes[i].length > 0) refreshChapterQuizStatus(i);
+  }
+  loadProgress();
+  startTimer();
+  loadNotes();
+}
+
+function renderSidebar() {
+  const nav = document.getElementById('sidebarNav');
+  nav.innerHTML = courseData.sections.map((s, i) =>
+    '<div class="nav-section" data-index="' + i + '" onclick="navigateTo(' + i + ')">' +
+    '<div class="nav-icon">' + s.icon + '</div>' +
+    '<div class="nav-info"><div class="nav-label">' + escapeHtml(s.title) + '</div>' +
+    '<div class="nav-sub">⏱ ' + s.duration + '</div></div></div>').join('');
+  updateSidebarLocks();
+}
+
+function updateSidebarLocks() {
+  document.querySelectorAll('.nav-section').forEach((el, i) => {
+    const check = canNavigateTo(i);
+    if (!check.ok && i !== currentSection) el.classList.add('locked');
+    else el.classList.remove('locked');
+  });
+}
+
+function renderSections() {
+  const main = document.getElementById('mainContent');
+  main.innerHTML = courseData.sections.map((s, i) =>
+    '<div class="section" data-section="' + i + '">' +
+      s.content +
+      quizBlockFor(i, s) +
+      '<div class="section-nav-buttons">' +
+        '<div>' + (i > 0 ? '<button class="btn btn-outline" onclick="navigateTo(' + (i - 1) + ')">← 上一章</button>' : '') + '</div>' +
+        '<div>' + (i < courseData.sections.length - 1
+          ? '<button class="btn" onclick="navigateTo(' + (i + 1) + ')">下一章 →</button>'
+          : '<button class="btn btn-success" id="completeCourseBtn" onclick="tryCompleteCourse(' + i + ')">✓ 完成课程</button>') +
+        '</div>' +
+      '</div>' +
+    '</div>').join('');
+}
+
+// 章节测验区块：带 content_quiz 类型的章节渲染该章的选择题
+function quizBlockFor(i, s) {
+  let h = '';
+  const hasQuiz = s.type === 'content_quiz' && chapterQuizzes[i] && chapterQuizzes[i].length > 0;
+  if (hasQuiz) h += renderChapterQuiz(i);
+  return h;
+}
+
+// ============================================================
+// 视频完整观看追踪（解锁前置条件之一）
+// 规则：视频需播放至 95% 或触发 ended 才计为「已看完」；
+//      拖动进度条被禁止，快进会被拉回已连续观看的最高位置；
+//      倍速最快 VIDEO_MAX_RATE（超出自动拉回）。
+// ============================================================
+function initVideoTracking() {
+  videoMeta = [];
+  let vi = 0;
+  courseData.sections.forEach((s, chIdx) => {
+    const vids = document.querySelectorAll('.section[data-section="' + chIdx + '"] video');
+    vids.forEach((v) => {
+      const meta = { idx: vi, chIdx: chIdx, src: videoSrcName(v) };
+      videoMeta.push(meta);
+      attachVideoGuards(v, meta);
+      vi++;
+    });
+  });
+}
+
+function videoSrcName(v) {
+  const src = v.querySelector('source');
+  return src ? src.getAttribute('src') : '';
+}
+
+function attachVideoGuards(v, meta) {
+  v.dataset.videoIdx = String(meta.idx);
+  // 禁止拖动：拖动后立刻回到「已连续观看的最高点」
+  v.addEventListener('seeking', () => {
+    const allow = videoMaxTime[meta.idx] || 0;
+    // 允许极小抖动（1 秒内），其余一律拉回
+    if (v.currentTime > allow + 1) {
+      v.currentTime = Math.min(allow, v.duration || allow);
+      if (!v.dataset.seekWarned || Date.now() - Number(v.dataset.seekWarned) > 4000) {
+        v.dataset.seekWarned = String(Date.now());
+        showToast('🔒 视频不可快进，请按顺序完整观看', 'warning');
+      }
+    }
+  });
+  // 倍速钳制：超过上限自动拉回
+  v.addEventListener('ratechange', () => {
+    if (v.playbackRate > VIDEO_MAX_RATE + 0.001) {
+      v.playbackRate = VIDEO_MAX_RATE;
+      if (!v.dataset.rateWarned || Date.now() - Number(v.dataset.rateWarned) > 4000) {
+        v.dataset.rateWarned = String(Date.now());
+        showToast('⏱ 视频最快支持 ' + VIDEO_MAX_RATE + ' 倍速', 'warning');
+      }
+    }
+  });
+  // 记录观看进度
+  v.addEventListener('timeupdate', () => {
+    const t = v.currentTime;
+    if (!videoMaxTime[meta.idx] || t > videoMaxTime[meta.idx]) videoMaxTime[meta.idx] = t;
+    maybeMarkWatched(v, meta);
+  });
+  v.addEventListener('ended', () => { markVideoWatched(meta); });
+  v.addEventListener('loadedmetadata', () => { renderVideoStatus(meta.chIdx); });
+  // 从已看位置继续播放（刷新后不从头再来）
+  v.addEventListener('play', () => {
+    const allow = videoMaxTime[meta.idx] || 0;
+    if (allow > 2 && Math.abs(v.currentTime - allow) > 2) v.currentTime = allow;
+  });
+}
+
+function maybeMarkWatched(v, meta) {
+  const dur = v.duration;
+  if (!dur || !isFinite(dur) || dur <= 0) return;
+  const pos = videoMaxTime[meta.idx] || v.currentTime;
+  if (pos / dur >= VIDEO_WATCH_RATIO) markVideoWatched(meta);
+}
+
+function markVideoWatched(meta) {
+  if (videoWatched.has(meta.idx)) return;
+  videoWatched.add(meta.idx);
+  renderVideoStatus(meta.chIdx);
+  updateSidebarLocks();
+  saveProgress();
+  showToast('🎬 视频已完整观看，后续章节已解锁', 'success');
+}
+
+// 某章尚未看完的视频数量
+function chapterVideosLeft(chIdx) {
+  return videoMeta.filter(m => m.chIdx === chIdx && !videoWatched.has(m.idx)).length;
+}
+
+// 渲染某章的视频观看状态条（视频上方）
+function renderVideoStatus(chIdx) {
+  const mine = videoMeta.filter(m => m.chIdx === chIdx);
+  if (mine.length === 0) return;
+  const watched = mine.filter(m => videoWatched.has(m.idx)).length;
+  const allDone = watched === mine.length;
+  // 每段视频的角标
+  mine.forEach((m) => {
+    const v = document.querySelector('video[data-video-idx="' + m.idx + '"]');
+    if (!v) return;
+    const wrap = v.closest('.video-wrapper');
+    if (!wrap) return;
+    let flag = wrap.querySelector('.video-flag');
+    if (!flag) {
+      flag = document.createElement('div');
+      flag.className = 'video-flag';
+      wrap.insertBefore(flag, wrap.firstChild);
+    }
+    flag.textContent = videoWatched.has(m.idx) ? '✅ 已看完' : '⏳ 待完整观看';
+    flag.classList.toggle('done', videoWatched.has(m.idx));
+  });
+  // 状态条
+  const section = document.querySelector('.section[data-section="' + chIdx + '"]');
+  if (!section) return;
+  let bar = document.getElementById('videostatus-' + chIdx);
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.className = 'video-status-bar';
+    bar.id = 'videostatus-' + chIdx;
+    const firstWrap = section.querySelector('.video-wrapper');
+    if (firstWrap) section.insertBefore(bar, firstWrap);
+    else section.appendChild(bar);
+  }
+  bar.innerHTML = allDone
+    ? '<span class="vs-ok">🎬 视频已完整观看，后续章节已解锁</span>'
+    : '<span class="vs-pending">🎬 观看进度：已看完 ' + watched + '/' + mine.length + ' 段 · 完整观看后解锁后续章节（视频不可拖动快进，支持 ' + VIDEO_MAX_RATE + ' 倍速）</span>';
+}
+
+function restoreVideoUI() {
+  videoMeta.forEach((m) => { renderVideoStatus(m.chIdx); });
+}
+
+// ============================================================
+// 章节测验（串行锁定：答对上一题才解锁下一题；计分制）
+// 计分：首次答对得该题满分（q.score）；答错后重新作答答对了得该题一半分
+// ============================================================
+function renderChapterQuiz(chIdx) {
+  const qs = chapterQuizzes[chIdx];
+  if (!qs || qs.length === 0) return '';
+  const totalScore = qs.reduce((n, q) => n + (q.score || 0), 0);
+  const h = '<div class="card" style="border-top:4px solid var(--primary);" id="chquizwrap-' + chIdx + '">' +
+    '<h2 style="margin-bottom:8px;">📝 ' + (courseData.sections[chIdx] ? escapeHtml(courseData.sections[chIdx].title) : '章节练习') + '（共 ' + qs.length + ' 题 · 满分 ' + totalScore + ' 分）</h2>' +
+    '<p style="margin:0 0 12px 0;font-size:13px;color:var(--text-secondary);background:#FFF7ED;border-left:3px solid #F59E0B;padding:8px 12px;border-radius:4px">🔒 串行作答：第 1 题答对后才能解锁第 2 题，以此类推。首次答对得该题满分；答错后点「重新作答」再答对，得该题一半分。答错的题可以反复重做。</p>' +
+    '<div class="quiz-progress-bar"><span id="quizProgressText-' + chIdx + '"></span><div class="qp-track"><div class="qp-fill" id="quizProgressFill-' + chIdx + '" style="width:0%"></div></div></div>' +
+    qs.map((q, qi) =>
+      '<div class="quiz-card' + (qi > 0 && !isPreviousQuestionCorrect(chIdx, qi) ? ' locked' : '') + '" id="chquiz-' + chIdx + '-' + qi + '" data-answered="false">' +
+        '<div class="quiz-question"><span class="badge badge-primary">第 ' + (qi + 1) + ' 题 · ' + (q.score || 0) + ' 分</span>' +
+        ((q.score || 0) >= 10 ? ' <span class="badge badge-warning">情境应用</span>' : '') +
+        '　' + escapeHtml(q.q) + '</div>' +
+        '<div class="quiz-options">' + q.opts.map((opt, oi) =>
+          '<div class="quiz-option" data-option="' + oi + '" onclick="selectChQuizOption(this,' + oi + ',' + chIdx + ',' + qi + ')">' +
+          '<span class="quiz-option-label">' + String.fromCharCode(65 + oi) + '</span><span>' + escapeHtml(opt) + '</span></div>').join('') +
+        '</div>' +
+        '<div class="quiz-feedback" id="feedback-chquiz-' + chIdx + '-' + qi + '"></div>' +
+        '<div class="quiz-locked-hint"><span>🔒 请先答对上一题，本题才会解锁</span></div>' +
+      '</div>').join('') +
+    '<div id="chquizstatus-' + chIdx + '" style="text-align:center;margin-top:8px;padding:12px;border-radius:8px;font-size:14px;background:' +
+      (chapterQuizDone[chIdx] ? '#ECFDF5' : '#F8FAFC') + ';">' +
+      chapterQuizStatusHtml(chIdx) +
+    '</div></div>';
+  return h;
+}
+
+function chapterQuizStatusHtml(chIdx) {
+  const qs = chapterQuizzes[chIdx] || [];
+  if (!chapterQuizDone[chIdx]) {
+    return '<span style="color:#64748B;">📋 已完成 ' + chapterQuizCorrectCount(chIdx) + ' / ' + qs.length + ' 题 · 当前得分 ' + chapterQuizScore(chIdx) + ' / ' + qs.reduce((n, q) => n + (q.score || 0), 0) + ' 分</span>';
+  }
+  return '<span style="color:#065F46;font-weight:600;">✅ 练习全部完成！最终得分 ' + chapterQuizScore(chIdx) + ' / ' + qs.reduce((n, q) => n + (q.score || 0), 0) + ' 分</span>';
+}
+
+function isPreviousQuestionCorrect(chIdx, qi) {
+  if (qi === 0) return true;
+  const prev = document.getElementById('chquiz-' + chIdx + '-' + (qi - 1));
+  if (!prev) return false;
+  return prev.dataset.answered === 'true' && !prev.querySelector('.quiz-option.wrong');
+}
+
+function updateChapterQuizLockState(chIdx) {
+  const qs = chapterQuizzes[chIdx] || [];
+  const done = chapterQuizDone[chIdx];
+  qs.forEach((q, qi) => {
+    const card = document.getElementById('chquiz-' + chIdx + '-' + qi);
+    if (!card) return;
+    // 本章已全部答对 → 清除所有锁定（否则刷新后会残留「锁定」外观）
+    if (done || isPreviousQuestionCorrect(chIdx, qi)) card.classList.remove('locked');
+    else card.classList.add('locked');
+  });
+}
+
+function selectChQuizOption(el, oi, chIdx, qi) {
+  const card = document.getElementById('chquiz-' + chIdx + '-' + qi);
+  if (!card || card.dataset.answered === 'true') return;
+  if (card.classList.contains('locked')) { showToast('🔒 请先答对上一题', 'warning'); return; }
+  const q = chapterQuizzes[chIdx][qi];
+  const isCorrect = (oi === q.correct);
+  card.querySelectorAll('.quiz-option').forEach(b => {
+    const optIdx = parseInt(b.dataset.option, 10);
+    b.style.pointerEvents = 'none';
+    if (isCorrect && optIdx === q.correct) b.classList.add('correct');
+    else if (!isCorrect && optIdx === oi) b.classList.add('wrong');
+    else b.classList.add('disabled');
+  });
+  const fb = document.getElementById('feedback-chquiz-' + chIdx + '-' + qi);
+  const baseScore = q.score || 0;
+  if (isCorrect) {
+    const half = !!quizMissed[chIdx + '_' + qi];
+    const got = half ? baseScore / 2 : baseScore;
+    fb.innerHTML = (typeof q.feedback_correct === 'string' && q.feedback_correct ? q.feedback_correct + '<br>' : '') +
+      '📈 本题得 <strong>' + got + ' 分</strong>' + (half ? '（该题 ' + baseScore + ' 分，首答有误得一半）' : '') +
+      '。累计得分 <strong>' + chapterQuizScore(chIdx) + '</strong> / ' + chapterQuizTotalScore(chIdx) + ' 分';
+    fb.classList.add('show', 'correct');
+    card.style.borderColor = 'var(--success)';
+  } else {
+    // 学习者红线：不展示正确答案，只提示错误并允许重做；记录「首答有误」（该题改为得一半分）
+    quizMissed[chIdx + '_' + qi] = true;
+    fb.innerHTML = (typeof q.feedback_wrong === 'string' && q.feedback_wrong ? q.feedback_wrong + '<br>' : '') +
+      '<div class="quiz-retry"><button class="btn btn-outline btn-sm" onclick="resetChapterQuiz(' + chIdx + ',' + qi + ')">重新作答</button></div>';
+    fb.classList.add('show', 'wrong');
+    card.style.borderColor = 'var(--danger)';
+  }
+  card.dataset.answered = 'true';
+  chapterQuizAnswers[chIdx + '_' + qi] = { selected: oi, isCorrect: isCorrect };
+  updateChapterQuizLockState(chIdx);
+  refreshQuizProgress(chIdx);
+  checkChapterQuizComplete(chIdx);
+  saveProgress();
+}
+
+function resetChapterQuiz(chIdx, qi) {
+  const card = document.getElementById('chquiz-' + chIdx + '-' + qi);
+  if (!card) return;
+  card.dataset.answered = 'false';
+  card.querySelectorAll('.quiz-option').forEach(b => {
+    b.classList.remove('correct', 'wrong', 'disabled');
+    b.style.pointerEvents = '';
+  });
+  card.style.borderColor = '';
+  const fb = document.getElementById('feedback-chquiz-' + chIdx + '-' + qi);
+  fb.classList.remove('show', 'correct', 'wrong');
+  fb.innerHTML = '';
+  delete chapterQuizAnswers[chIdx + '_' + qi];
+  updateChapterQuizLockState(chIdx);
+  refreshQuizProgress(chIdx);
+  saveProgress();
+}
+
+function checkChapterQuizComplete(chIdx) {
+  if (chapterQuizDone[chIdx]) return;
+  const qs = chapterQuizzes[chIdx] || [];
+  if (qs.length === 0) return;
+  const allCorrect = qs.every((q, qi) => {
+    const card = document.getElementById('chquiz-' + chIdx + '-' + qi);
+    return card && card.dataset.answered === 'true' && !card.querySelector('.quiz-option.wrong');
+  });
+  if (!allCorrect) return;
+  chapterQuizDone[chIdx] = true;
+  refreshChapterQuizStatus(chIdx);
+  showToast('🎉 练习全部完成！最终得分 ' + chapterQuizScore(chIdx) + ' / ' + chapterQuizTotalScore(chIdx) + ' 分', 'success');
+  updateSidebarLocks();
+  saveProgress();
+}
+
+function chapterQuizTotalScore(chIdx) {
+  return (chapterQuizzes[chIdx] || []).reduce((n, q) => n + (q.score || 0), 0);
+}
+function chapterQuizCorrectCount(chIdx) {
+  const qs = chapterQuizzes[chIdx] || [];
+  let n = 0;
+  qs.forEach((q, qi) => {
+    const rec = chapterQuizAnswers[chIdx + '_' + qi];
+    if (rec && rec.isCorrect) n++;
+  });
+  return n;
+}
+// 当前章累计得分：答对的题按「首答满分 / 答错过得一半」计
+function chapterQuizScore(chIdx) {
+  const qs = chapterQuizzes[chIdx] || [];
+  let sc = 0;
+  qs.forEach((q, qi) => {
+    const rec = chapterQuizAnswers[chIdx + '_' + qi];
+    if (rec && rec.isCorrect) sc += quizMissed[chIdx + '_' + qi] ? (q.score || 0) / 2 : (q.score || 0);
+  });
+  return sc;
+}
+
+// 刷新某章测验的底部状态条与进度条
+function refreshChapterQuizStatus(chIdx) {
+  const el = document.getElementById('chquizstatus-' + chIdx);
+  if (!el) return;
+  const done = !!chapterQuizDone[chIdx];
+  el.style.background = done ? '#ECFDF5' : '#F8FAFC';
+  el.innerHTML = chapterQuizStatusHtml(chIdx);
+  refreshQuizProgress(chIdx);
+}
+
+function refreshQuizProgress(chIdx) {
+  const qs = chapterQuizzes[chIdx] || [];
+  const txt = document.getElementById('quizProgressText-' + chIdx);
+  const fill = document.getElementById('quizProgressFill-' + chIdx);
+  if (txt) txt.textContent = '已完成 ' + chapterQuizCorrectCount(chIdx) + '/' + qs.length + ' · 得分 ' + chapterQuizScore(chIdx) + '/' + chapterQuizTotalScore(chIdx);
+  if (fill) fill.style.width = (qs.length ? chapterQuizCorrectCount(chIdx) / qs.length * 100 : 0) + '%';
+}
+
+// ============================================================
+// 导航与解锁
+// ============================================================
+// 进入第 index 章的门槛：前面的每一章都必须「视频看完 + 该章任务完成」
+function canNavigateTo(index) {
+  if (index === 0) return { ok: true };
+  for (let i = 0; i < index; i++) {
+    const gate = chapterGate(i);
+    if (!gate.ok) return { ok: false, msg: '请先完成第 ' + (i + 1) + ' 章：' + gate.msg };
+  }
+  return { ok: true };
+}
+
+// 单章通过条件：① 本章视频全部完整观看 ② 该章任务完成（测验）
+function chapterGate(i) {
+  const left = chapterVideosLeft(i);
+  if (left > 0) {
+    return { ok: false, msg: '还有 ' + left + ' 段视频未完整观看（视频不可拖动快进）' };
+  }
+  const qs = chapterQuizzes[i] || [];
+  if (qs.length === 0) return { ok: true };
+  if (!chapterQuizDone[i]) return { ok: false, msg: '练习尚未全部答完（已完成 ' + chapterQuizCorrectCount(i) + '/' + qs.length + '）' };
+  return { ok: true };
+}
+
+function navigateTo(index) {
+  const check = canNavigateTo(index);
+  if (!check.ok) { showToast('🔒 ' + check.msg, 'warning'); return; }
+  currentSection = index;
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-section').forEach(n => n.classList.remove('active'));
+  const section = document.querySelector('.section[data-section="' + index + '"]');
+  if (section) section.classList.add('active');
+  const navItem = document.querySelector('.nav-section[data-index="' + index + '"]');
+  if (navItem) navItem.classList.add('active');
+  updateProgress(); updateNotesForSection(index); saveProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+  const mhTitle = document.getElementById('mhTitle');
+  if (mhTitle) mhTitle.textContent = courseData.sections[index].title;
+}
+
+function markComplete(index) {
+  completedSections.add(index);
+  updateProgress(); saveProgress();
+  showToast('「' + courseData.sections[index].title + '」已完成 ✓', 'success');
+  checkCertificate();
+}
+
+function tryCompleteCourse(index) {
+  for (let i = 0; i < courseData.sections.length; i++) {
+    const left = chapterVideosLeft(i);
+    if (left > 0) { showToast('🎬 还有 ' + left + ' 段视频未完整观看（视频不可拖动快进）', 'warning'); return; }
+    const qs = chapterQuizzes[i] || [];
+    if (qs.length && !chapterQuizDone[i]) {
+      showToast('📝 请先完成第 ' + (i + 1) + ' 章「' + courseData.sections[i].title + '」的全部练习（已完成 ' + chapterQuizCorrectCount(i) + '/' + qs.length + '）', 'warning');
+      return;
+    }
+  }
+  markComplete(index);
+}
+
+function updateProgress() {
+  const total = courseData.sections.length;
+  const viewed = new Set([...completedSections, currentSection]);
+  const pct = Math.round((viewed.size / total) * 100);
+  document.getElementById('progressPercent').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.querySelectorAll('.nav-section').forEach((el, i) => {
+    if (completedSections.has(i)) el.classList.add('completed');
+  });
+}
+
+
+// ============================================================
+// 计时器 / 笔记
+// ============================================================
+function startTimer() {
+  const saved = localStorage.getItem(LS_PREFIX + '_study_seconds');
+  if (saved) studySeconds = parseInt(saved, 10);
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    studySeconds++;
+    updateTimerDisplay();
+    if (studySeconds % 10 === 0) localStorage.setItem(LS_PREFIX + '_study_seconds', studySeconds);
+  }, 1000);
+}
+function updateTimerDisplay() {
+  const mins = Math.floor(studySeconds / 60), secs = studySeconds % 60;
+  const ts = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+  const el = document.getElementById('timerDisplay'); if (el) el.textContent = ts;
+  const mt = document.getElementById('mhTimer'); if (mt) mt.textContent = '⏱ ' + ts;
+}
+
+function toggleNotes() { document.getElementById('notesPanel').classList.toggle('open'); }
+function updateNotesForSection(index) {
+  document.getElementById('notesChapterLabel').textContent = courseData.sections[index].title;
+  const saved = JSON.parse(localStorage.getItem(LS_PREFIX + '_notes') || '{}');
+  document.getElementById('notesTextarea').value = saved[index] || '';
+}
+function loadNotes() {
+  const saved = JSON.parse(localStorage.getItem(LS_PREFIX + '_notes') || '{}');
+  const ta = document.getElementById('notesTextarea');
+  if (!ta) return;
+  ta.value = saved[currentSection] || '';
+  ta.addEventListener('input', function () {
+    const all = JSON.parse(localStorage.getItem(LS_PREFIX + '_notes') || '{}');
+    all[currentSection] = this.value;
+    localStorage.setItem(LS_PREFIX + '_notes', JSON.stringify(all));
+  });
+}
+
+// ============================================================
+// 进度持久化
+// ============================================================
+function restoreChapterQuizUI() {
+  Object.keys(chapterQuizAnswers).forEach(key => {
+    const parts = key.split('_').map(Number);
+    const chIdx = parts[0], qi = parts[1];
+    if (isNaN(chIdx) || isNaN(qi)) return;
+    const ans = chapterQuizAnswers[key];
+    if (!ans) return;
+    const card = document.getElementById('chquiz-' + chIdx + '-' + qi);
+    if (!card) return;
+    card.dataset.answered = 'true';
+    const q = (chapterQuizzes[chIdx] || [])[qi] || {};
+    card.querySelectorAll('.quiz-option').forEach(b => {
+      const oi = parseInt(b.dataset.option, 10);
+      b.style.pointerEvents = 'none';
+      if (ans.isCorrect && oi === q.correct) b.classList.add('correct');
+      else if (!ans.isCorrect && oi === ans.selected) b.classList.add('wrong');
+      else b.classList.add('disabled');
+    });
+    const fb = document.getElementById('feedback-chquiz-' + chIdx + '-' + qi);
+    if (fb) {
+      if (ans.isCorrect) {
+        const half = !!quizMissed[chIdx + '_' + qi];
+        const got = half ? (q.score || 0) / 2 : (q.score || 0);
+        fb.innerHTML = (typeof q.feedback_correct === 'string' && q.feedback_correct ? q.feedback_correct + '<br>' : '') +
+          '📈 本题得 <strong>' + got + ' 分</strong>（恢复显示）。累计得分 <strong>' + chapterQuizScore(chIdx) + '</strong> / ' + chapterQuizTotalScore(chIdx) + ' 分';
+        fb.classList.add('show', 'correct');
+        card.style.borderColor = 'var(--success)';
+      } else {
+        fb.innerHTML = (typeof q.feedback_wrong === 'string' && q.feedback_wrong ? q.feedback_wrong + '<br>' : '') +
+          '<div class="quiz-retry"><button class="btn btn-outline btn-sm" onclick="resetChapterQuiz(' + chIdx + ',' + qi + ')">重新作答</button></div>';
+        fb.classList.add('show', 'wrong');
+        card.style.borderColor = 'var(--danger)';
+      }
+    }
+  });
+}
+
+function saveProgress() {
+  const state = {
+    completedSections: [...completedSections],
+    chapterQuizDone: chapterQuizDone,
+    chapterQuizAnswers: chapterQuizAnswers,
+    quizMissed: quizMissed,
+    videoWatched: [...videoWatched],
+    videoMaxTime: videoMaxTime,
+    currentSection: currentSection
+  };
+  try { localStorage.setItem(LS_PREFIX + '_progress', JSON.stringify(state)); } catch (e) {}
+}
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(LS_PREFIX + '_progress'));
+    if (saved) {
+      completedSections = new Set(saved.completedSections || []);
+      chapterQuizDone = saved.chapterQuizDone || new Array(chapterQuizzes.length).fill(false);
+      if (chapterQuizDone.length !== chapterQuizzes.length) chapterQuizDone = new Array(chapterQuizzes.length).fill(false);
+      chapterQuizAnswers = saved.chapterQuizAnswers || {};
+      quizMissed = saved.quizMissed || {};
+      videoWatched = new Set(saved.videoWatched || []);
+      // 旧数据没有视频字段时，已通过章节视为视频已看（避免老学员被新规则卡住）
+      if (!saved.videoWatched) {
+        videoMeta.forEach((m) => {
+          if (!!(saved.chapterQuizDone || [])[m.chIdx]) videoWatched.add(m.idx);
+        });
+      }
+      videoMaxTime = saved.videoMaxTime || {};
+      currentSection = saved.currentSection || 0;
+      // 兼容旧数据：有完成标记但没有答题记录 → 重置测验状态
+      const hasDoneButNoAnswers = chapterQuizDone.some(d => d) && Object.keys(chapterQuizAnswers).length === 0;
+      if (hasDoneButNoAnswers) chapterQuizDone = new Array(chapterQuizzes.length).fill(false);
+      if (!canNavigateTo(currentSection).ok) currentSection = 0;
+      updateProgress();
+      updateSidebarLocks();
+      restoreChapterQuizUI();
+      for (let i = 0; i < chapterQuizzes.length; i++) {
+        if (chapterQuizzes[i] && chapterQuizzes[i].length > 0) {
+          updateChapterQuizLockState(i);
+          refreshChapterQuizStatus(i);
+        }
+      }
+      restoreVideoUI();
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      const section = document.querySelector('.section[data-section="' + currentSection + '"]');
+      if (section) section.classList.add('active');
+      const navItem = document.querySelector('.nav-section[data-index="' + currentSection + '"]');
+      if (navItem) navItem.classList.add('active');
+      const mhTitle = document.getElementById('mhTitle');
+      if (mhTitle) mhTitle.textContent = courseData.sections[currentSection].title;
+    } else {
+      navigateTo(0);
+    }
+  } catch (e) {
+    navigateTo(0);
+  }
+}
+
+// ============================================================
+// 结业证书
+// ============================================================
+function checkCertificate() {
+  const last = courseData.sections.length - 1;
+  const lastQs = chapterQuizzes[last] || [];
+  const allDone = completedSections.size >= courseData.sections.length
+    && chapterVideosLeft(0) === 0 && (lastQs.length === 0 || chapterQuizDone[last]);
+  if (!allDone) return;
+  setTimeout(() => {
+    showToast('🏆 恭喜完成全部课程！点击领取结业证书', 'success');
+    document.getElementById('certScore').textContent = '培训视频：已完整观看';
+    document.getElementById('certFinalScore').textContent = '配套练习：' + chapterQuizScore(last) + ' 分（满分 ' + chapterQuizTotalScore(last) + ' 分）';
+    document.getElementById('certDate').textContent = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+    const savedName = localStorage.getItem(LS_PREFIX + '_student_name');
+    if (savedName) {
+      document.getElementById('certStudentName').textContent = savedName;
+      document.getElementById('certNameEdit').style.display = 'none';
+    } else {
+      document.getElementById('certNameEdit').style.display = 'block';
+      document.getElementById('certNameInput').focus();
+    }
+    document.getElementById('certOverlay').style.display = 'flex';
+  }, 800);
+}
+function saveCertName() {
+  const input = document.getElementById('certNameInput');
+  const name = (input.value || '').trim();
+  if (!name) { showToast('请输入姓名后再确认', 'warning'); input.focus(); return; }
+  localStorage.setItem(LS_PREFIX + '_student_name', name);
+  document.getElementById('certStudentName').textContent = name;
+  document.getElementById('certNameEdit').style.display = 'none';
+  showToast('✅ 姓名已保存', 'success');
+}
+function closeCertificate() { document.getElementById('certOverlay').style.display = 'none'; }
+function printCertificate() {
+  const name = document.getElementById('certStudentName').textContent;
+  if (!name || name === '请填写姓名') { showToast('请先确认姓名后再打印证书', 'warning'); return; }
+  const cert = document.getElementById('certPaper');
+  const win = window.open('', '_blank', 'width=750,height=600');
+  win.document.write('<html><head><meta charset="UTF-8"><title>结业证书</title><style>');
+  win.document.write('body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#f1f5f9;}');
+  win.document.write('.cert{background:#fff;width:700px;padding:48px 36px;text-align:center;border:2px solid #e2e8f0;border-radius:12px;}');
+  win.document.write('.cert h1{font-size:28px;color:#3730A3;margin-bottom:4px;}');
+  win.document.write('.cert .sub{font-size:12px;color:#64748b;letter-spacing:0.1em;margin-bottom:24px;}');
+  win.document.write('.cert .body{font-size:15px;line-height:2;color:#1e293b;}');
+  win.document.write('.cert .name{display:inline-block;border-bottom:2px solid #4F46E5;min-width:120px;padding:4px 12px;margin:0 4px;}');
+  win.document.write('.cert .course{font-weight:700;color:#3730A3;margin:8px 0;}');
+  win.document.write('.cert .score{margin:20px 0 4px;font-size:16px;font-weight:600;color:#10b981;}');
+  win.document.write('.cert .final-score{margin:4px 0 20px;font-size:14px;font-weight:600;color:#3730A3;}');
+  win.document.write('.cert .footer{display:flex;justify-content:space-between;font-size:12px;color:#64748b;margin-top:32px;border-top:1px solid #e2e8f0;padding-top:16px;}');
+  win.document.write('</style></head><body><div class="cert">');
+  win.document.write(cert.innerHTML.replace(/<button[^>]*>[\s\S]*?<\/button>/g, '').replace(/<div class="cert-name-edit"[\s\S]*?<\/div><\/div>/g, ''));
+  win.document.write('</div></body></html>');
+  win.document.close(); setTimeout(() => win.print(), 500);
+}
+
+// ============================================================
+// Toast / 侧边栏
+// ============================================================
+function showToast(msg, type) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2500);
+}
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
+</script>
+</body>
+</html>
