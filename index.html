@@ -250,10 +250,38 @@ video{width:100%;border-radius:var(--radius-sm);background:#000;display:block}
 .note-card.update-notice::after{content:'📖 以白皮书为准';display:inline-block;font-size:11.5px;font-weight:700;
   color:#B45309;background:#FDE68A;border:1px solid #FCD34D;border-radius:999px;padding:2px 10px;margin-top:8px}
 
+/* 视频进度信息条：已看 % / 已看时长 / 剩余时长（进度条可自由拖动回看） */
+.video-progress-info{margin:10px 0 22px;padding:12px 16px;border-radius:8px;
+  background:#F8FAFC;border:1px solid var(--border)}
+.video-progress-info .vp-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;color:var(--text-secondary)}
+.video-progress-info .vp-label{font-weight:700;color:var(--text)}
+.video-progress-info .vp-num strong{color:var(--primary);font-size:14px}
+.video-progress-info .vp-left{margin-left:auto;color:var(--text-secondary)}
+.video-progress-info .vp-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:8px}
+.video-progress-info .vp-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .3s ease}
+.video-progress-info .vp-fill.done{background:var(--success,#10b981)}
+.video-progress-info .vp-tip{margin-top:8px;font-size:12px;color:var(--text-secondary);line-height:1.6}
+.video-progress-info .vp-hint{font-size:13px;color:var(--text-secondary)}
+
+/* 章节计划时间条：计划时长 vs 实际停留用时 */
+.chapter-plan-bar{margin:0 0 20px;padding:12px 16px;border-radius:8px;
+  background:#EEF2FF;border-left:4px solid var(--primary)}
+.chapter-plan-bar .cp-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-size:13px;color:var(--text-secondary)}
+.chapter-plan-bar .cp-label{font-weight:700;color:var(--primary-dark,var(--primary))}
+.chapter-plan-bar .cp-spent{font-weight:600;color:var(--text)}
+.chapter-plan-bar .cp-spent.over{color:#B45309}
+.chapter-plan-bar .cp-rest{margin-left:auto;font-size:12px}
+.chapter-plan-bar .cp-track{height:6px;background:#DBEAFE;border-radius:3px;overflow:hidden;margin-top:8px}
+.chapter-plan-bar .cp-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .4s ease}
+.chapter-plan-bar .cp-fill.over{background:#F59E0B}
+.chapter-plan-bar.over{background:#FFF7ED;border-left-color:#F59E0B}
+
 /* 移动端 */
 @media(max-width:1024px){
   .video-status-bar{font-size:12.5px;padding:10px 12px}
   .note-card.update-notice p{font-size:13.5px}
+  .video-progress-info .vp-left{margin-left:0}
+  .chapter-plan-bar .cp-rest{margin-left:0}
 }
 
 </style>
@@ -290,7 +318,7 @@ video{width:100%;border-radius:var(--radius-sm);background:#000;display:block}
 </div>
 
 <!-- ===== 课程数据（JSON） ===== -->
-<script id="appDataJson" type="application/json">{"title":"豌豆产品介绍（下）","lsPrefix":"cn_lp_product_down","orgName":"豌豆思维","videoMaxRate":1.25,"sections":[{"id":"s1","title":"看视频 · 产品下","duration":"约 57 分钟","icon":"1","type":"video","content":"\n<div class=\"goal-card\">\n  <h3>🎯 学习目标</h3>\n  <p>看完这节课，你要能做到：</p>\n  <ul>\n    <li>把 <strong>班型、课时、排课、请假补课</strong> 这些高频规则说准，尤其满班人数、课时长度、预排节数不能记错；</li>\n    <li>讲清 <strong>有效期、休学、退费挽单</strong> 的处理流程和归属，知道什么情况该找谁；</li>\n    <li>说清 <strong>教具教材的发放与寄送、豌豆币的用法</strong>，以及 <strong>V8→V9 课件升级</strong> 变了什么。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🎬 完整视频：产品下（约 57 分钟）</h2>\n  <p>视频为培训现场实录，请<strong>完整观看</strong>（不可拖动快进，看满后可解锁下一章）。建议边看边对照下方的要点导读。</p>\n  <div class=\"video-wrapper\">\n    <!-- 视频超出 GitHub Pages 单文件直传限制，放在本仓库 Release 资源里引用 -->\n    <video controls preload=\"metadata\" playsinline>\n      <source src=\"https://github.com/ruanqiaoyun0-a11y/cn-lp-product-down/releases/download/v1.0/product-down.mp4\" type=\"video/mp4\">\n      你的浏览器不支持视频播放。\n    </video>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📌 本视频要点导读</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>看视频时重点抓这几条</th><th>对应章节</th></tr></thead>\n      <tbody>\n        <tr><td>班型与课时：满班人数、单课时长、授课语言、可选时段</td><td>第 2 章</td></tr>\n        <tr><td>排课规则：新生插班、老生调班、复课 4x-3 讲、开班节奏</td><td>第 3 章</td></tr>\n        <tr><td>请假与补课：请假时间、次数与扣课时、AI 补课不扣课时</td><td>第 4 章</td></tr>\n        <tr><td>有效期与休学：有效期怎么算、停课释放学位</td><td>第 5 章</td></tr>\n        <tr><td>教具教材与豌豆币：分批寄送、8000 豌豆币＝1 节直播课</td><td>第 7、8 章</td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"note-card update-notice\">\n  <p class=\"un-title\">⚠️ 内容更新提示 · 满班人数（务必以本课口径为准）</p>\n  <p>🔊 视频 / 课件中为：<strong>「S1 到 S2 是六人班，S3 到 S9 是八人班」</strong></p>\n  <p>✅ 正确口径：<strong>S1 满班 6 人；S2-S9 满班 8 人。</strong></p>\n  <p>📖 请以白皮书为准，避免向家长传达错误信息（对应知识点 P-14）。</p>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💡 怎么用这段视频</strong>\n  <p>这一课讲的多是<strong>规则口径</strong>，错一个字就可能给家长错误承诺。第一遍先看整体流程，第二遍按「一、二、三」的节点核对细节。凡是视频里与橙色提示卡冲突的地方，一律按提示卡。</p>\n</div>\n"},{"id":"s2","title":"班型与课程设置","duration":"8-10 分钟","icon":"2","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">👥 班型与课时长度</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>项目</th><th>口径</th></tr></thead>\n      <tbody>\n        <tr><td>S1 满班人数</td><td><strong>6 人</strong></td></tr>\n        <tr><td>S2-S9 满班人数</td><td><strong>8 人</strong></td></tr>\n        <tr><td>S1 单课时长</td><td><strong>30 分钟</strong>/课时</td></tr>\n        <tr><td>S2-S9 单课时长</td><td><strong>40 分钟</strong>/课时</td></tr>\n      </tbody>\n    </table>\n  </div>\n  <p><strong>开新班门槛</strong>：需满足班级人数 <strong>50%</strong> 才开班。即 S1 需满 3 人、S2-S9 需满 4 人。日常排课<strong>首选插班</strong>，不建议开新班。</p>\n</div>\n\n<div class=\"note-card update-notice\">\n  <p class=\"un-title\">⚠️ 内容更新提示 · 满班人数</p>\n  <p>🔊 视频（00:01:30、00:11:57）与课件中为：「S1 到 S2 是六人班，S3 到 S9 是八人班」</p>\n  <p>✅ 正确口径：<strong>S1 满班 6 人；S2-S9 满班 8 人。</strong></p>\n  <p>📖 请以白皮书为准（知识点 P-14）。这一条最容易被家长追问，务必记准。</p>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🌐 授课语言与上课时间</h2>\n  <ul>\n    <li><strong>授课语言</strong>：普通话、粤语、全英、中英（中教 / 外教）；中国台湾地区为台湾普通话配繁体课件。</li>\n    <li><strong>可选时间</strong>：周一至周日（北京时间）<strong>7:00 至 24:00</strong>，多个时段可选。</li>\n    <li><strong>上课节奏</strong>：固定一周 2 节课；<strong>固定老师、固定班级、固定学伴</strong>。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 可选上课时间</p>\n    <p>🔊 视频（00:12:16）中为：「可选上课时间从上午 10 点到晚上 8 点 10 分」</p>\n    <p>✅ 正确口径：<strong>周一至周日（北京时间）7:00 至 24:00，多个时段可选。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-17）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🗓 系统预排</h2>\n  <p>系统会自动预排未来 <strong>7 节课</strong>，提前消耗 <strong>7 课时</strong>，但这<strong>并非真实划扣</strong>，只是帮孩子占学位；<strong>上一节课才消耗一节课时</strong>。</p>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 系统预排节数</p>\n    <p>🔊 视频（00:15:39）中为：「系统会自动预排后续的<strong>八级</strong>课」</p>\n    <p>✅ 正确口径：<strong>系统自动预排未来 7 节课。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-18）。</p>\n  </div>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「我们是小班，S1 一个班最多 6 个孩子，S2 往上最多 8 个。上课时间是每天早上 7 点到晚上 12 点，您可以挑方便的时段，固定在同一个班、同一个老师、同一批同学。」</p>\n</div>\n"},{"id":"s3","title":"排课规则与分层","duration":"8-10 分钟","icon":"3","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🔀 新生与老生排课</h2>\n  <ul>\n    <li><strong>新生</strong>：前端销售签单后，家长确认开课时间，由<strong>教务排课</strong>，排好后才流转至 LP 服务；LP 需要核对上课时间是否有误。</li>\n    <li><strong>老生</strong>：因时间、老师、级别不合适造成调班，由 <strong>LP 发起调课</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📈 排课进度怎么对</h2>\n  <ul>\n    <li>新生<strong>插班</strong>到现有进度的老生班，<strong>并非从所定级别的第一节课开始</strong>。</li>\n    <li>新生首课一定是<strong>专题第一讲</strong>，并随当前教学进度走。</li>\n    <li>老生换级别、新生插班，都从<strong>当前进度插入</strong>；老生换老师、换时间不涉及知识点变化，按原进度继续。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 复课与螺旋上升</h2>\n  <ul>\n    <li>老生停课后复课，需符合 <strong>4x-3 讲</strong>，即从<strong>新专题的第一讲（单数）</strong>插班（X 为专题数）。</li>\n    <li>课程难度<strong>螺旋式上升</strong>：专题与专题之间无直接关系，但讲次与讲次之间必然联系；每个 <strong>4 节课</strong>为一个完整专题，<strong>专题第一讲一定是单数</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🧱 科学分层与开班节奏</h2>\n  <ul>\n    <li>共 <strong>9 个级别</strong>，每个级别 <strong>96 节课</strong>，分 <strong>A、B、C、D 四个阶段</strong>；每阶段 <strong>6 个专题</strong>，每专题 <strong>4 讲次</strong>；一个级别共 <strong>24 个专题</strong>。</li>\n    <li>所有新级别在 <strong>6 月 30 日（最后一个周末）至 7 月初</strong> 开始进入新级别学习；7 月滚动开班，8 月起顺着前面的顺序继续。</li>\n    <li>96 节课结束后，剩余周次安排衔接 / 进阶课程。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💡 一句话记住</strong>\n  <p>「4 节课一个专题、第一讲是单数」——所以复课要在 4x-3 讲插班，才能从新专题的第一讲接上。</p>\n</div>\n"},{"id":"s4","title":"请假与补课","duration":"8-10 分钟","icon":"4","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📅 请假规则</h2>\n  <ul>\n    <li>建议家长<strong>提前 24 小时</strong>请假，最晚可自主通过<strong>豌豆素质家长端</strong>操作（课程协议规定提前 <strong>3 小时</strong>）。</li>\n    <li><strong>课前 15 分钟</strong>起，家长与 LP 均无法操作请假；<strong>主讲老师可以操作</strong>（因为考勤由主讲老师在课后填写）。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔢 请假次数与课时</h2>\n  <ul>\n    <li><strong>不同课包请假次数不同</strong>：课时多的课包请假次数多，课时少则少，以后台数据为准。</li>\n    <li>在请假次数内请假：<strong>扣请假次数，不扣课时</strong>。</li>\n    <li>超出请假次数后请假：改为<strong>扣课时</strong>，每次请假扣 1 个课时。</li>\n    <li>课包之间的请假次数<strong>不叠加</strong>，不能用下一个课包的次数补上一个课包。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">💳 课时消耗与旷课</h2>\n  <ul>\n    <li><strong>课时消耗原则</strong>：按<strong>课时获得的先后顺序</strong>消耗。</li>\n    <li><strong>旷课</strong>：扣 1 课时。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 课时消耗顺序</p>\n    <p>🔊 视频（00:33:45）中为：「同一课包内<strong>先消耗购买的正课，后消耗赠送的课程</strong>」</p>\n    <p>✅ 正确口径：<strong>按课时获得的先后顺序消耗。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-25）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 补课</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>补课方式</th><th>说明</th><th>是否扣课时</th></tr></thead>\n      <tbody>\n        <tr><td>直播补课</td><td>插班真人补课，由 LP 安排</td><td><strong>扣课时</strong></td></tr>\n        <tr><td>AI 补课</td><td>课程回放，<strong>仅在请假状态下</strong>可生成</td><td><strong>不扣课时</strong></td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「在您课包规定的请假次数内请假，只扣请假次数、不扣课时；超出次数之后才会扣课时。另外 AI 补课是看回放，不扣课时；插班真人补课才会扣。」</p>\n</div>\n"},{"id":"s5","title":"有效期与休学","duration":"6-8 分钟","icon":"5","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">⏳ 课程有效期</h2>\n  <ul>\n    <li>不同课包对应<strong>不同有效期</strong>，<strong>自排课起开始计算</strong>（含等班、休学等时间），所以通常比实际上课时间长一些。</li>\n    <li>合同与后台均可查看。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🛑 休学（停课）规则</h2>\n  <ul>\n    <li><strong>不同课包对应不同停课机会</strong>，一次办理<strong>不超过 30 天</strong>。</li>\n    <li>第 31 天未排课，会自动按<strong>每周 2 节</strong>划扣课时；特殊情况可延长。</li>\n    <li>停课后<strong>立即释放学位</strong>；复课需<strong>重新排课</strong>，<strong>无法保证回到原老师班级</strong>，班主任需提前告知家长。</li>\n    <li>休学期间的课<strong>无法补课</strong>（对应课件已锁定，进度已往前推进）。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 休学次数</p>\n    <p>🔊 视频（00:28:58）中为：「休学有<strong>一次</strong>停课机会，不超过 30 天」</p>\n    <p>✅ 正确口径：<strong>不同课包对应不同停课机会，一次办理不超过 30 天。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-29）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📋 其他规则</h2>\n  <ul>\n    <li><strong>一个账号只能一个学生上课。</strong></li>\n    <li><strong>1V1 课包</strong>：正常耗课 1 次扣 <strong>4 课时</strong>；如果排成了小班，就按正常 <strong>1 课时 1 次</strong>扣；排课由教务进行。</li>\n  </ul>\n</div>\n"},{"id":"s6","title":"退费与挽单","duration":"6-8 分钟","icon":"6","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🤝 挽单归属</h2>\n  <ul>\n    <li><strong>四节课内</strong>：由 <strong>CC 挽单</strong>。</li>\n    <li><strong>四节课外</strong>：由 <strong>LP 挽单</strong>。</li>\n    <li>LP 挽单必须有完整的<strong>一挽、二挽流程</strong>；挽单失败后 <strong>48 小时内</strong>由 OA 发起退费申请。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">💰 退费计算与时效</h2>\n  <ul>\n    <li>新生在 <strong>4 节课内</strong>：无忧试学，<strong>全额退费</strong>。</li>\n    <li>超过 4 节课退费：<strong>购买价格 ÷ 基础直播课时（不含赠课）× 已上课时</strong> ＝ 扣费金额，以系统自动结算为准。</li>\n    <li><strong>退款时效</strong>：一般原路退回，统一口径 <strong>2-3 周</strong>；如遇特殊情况需财务线下打款，统一口径约 <strong>1 个月</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「退费按合同和系统结算来，一般是原路退回，2-3 周能到账；如果走财务线下打款，大概 1 个月。我先帮您把情况登记清楚，流程我全程跟着。」</p>\n</div>\n"},{"id":"s7","title":"教具教材与寄送","duration":"6-8 分钟","icon":"7","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📚 教材构成</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>教材</th><th>覆盖级别</th><th>说明</th></tr></thead>\n      <tbody>\n        <tr><td>豌豆宝典</td><td>S1-S9</td><td>分四个部分：要点总结、分环节实战练习（三星/五星难度分层）、学习笔记、大开眼界</td></tr>\n        <tr><td>计算专项突破</td><td>S4-S9</td><td>一季度一册，一年 4 册，一周练 3 次，爬坡式训练，明确标注第一周/第二周/第三周</td></tr>\n        <tr><td>全年课程图谱</td><td>S4-S9</td><td>标注每个板块属于校内、进阶还是奥数，方便给家长做课程规划</td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🧸 教具</h2>\n  <ul>\n    <li><strong>S1-S3</strong> 发放<strong>亲子教具</strong>（课后亲子思维游戏）；原「思维互动卡、自由闯关图、习惯表」已停发，改为计算专项突破。</li>\n    <li>教具不会玩时，可在与教研对接的群内索取<strong>指导视频</strong>，再转发给家长。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📦 寄送规则</h2>\n  <ul>\n    <li>由仓库按 <strong>A、B、C、D 每个阶段的首页分批发货</strong>，不一次性寄送；按实际排课讲次发放（如从 B1 开始就发 B1 至 B6，从 B5 开始就发 B5 至 B6）。</li>\n    <li><strong>不与家长保证开课前一定收到教材</strong>，一般开课前后 3 天到货；因每 4 节课才做一次练习，晚到不影响学习，先安抚家长并在仓库对接群催促发货。</li>\n    <li>家长着急时，可下载对应进度的<strong>电子教材</strong>发给家长；注意下载链接含内部资料，<strong>不要直接转发链接</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 兑换课时</h2>\n  <ul>\n    <li><strong>国内学员</strong>：教具教材是免费寄送的福利，<strong>不支持兑换课时</strong>。</li>\n    <li><strong>海外与中国台湾地区学员</strong>：因海运 / 空运成本较高，可将这部分运费<strong>折成课时返还</strong>。</li>\n  </ul>\n</div>\n"},{"id":"s8","title":"豌豆币","duration":"5-6 分钟","icon":"8","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🪙 豌豆币是什么</h2>\n  <ul>\n    <li><strong>定义</strong>：豌豆商城中的一种积分称呼。</li>\n    <li><strong>用途</strong>：可在豌豆商城兑换实物礼品、直播课或录播课。</li>\n    <li><strong>兑换比例</strong>：<strong>8000 豌豆币兑换 1 节直播课</strong>；每日兑换上限 <strong>3 节</strong>。</li>\n    <li><strong>获取途径</strong>：购买正课课包、参加打卡、转介绍、视听。</li>\n    <li><strong>使用端</strong>：只能在<strong>家长端</strong>使用；学生端可以生成订单但只有选择权，订单进入家长端由家长确认（学生端可选的都是实物礼品）。</li>\n    <li><strong>有效期</strong>：<strong>次年 12 月 31 日清零</strong>（1-2 年不等）。每年 12 月起，APP、公众号与班主任都会提醒家长兑换。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「豌豆币是商城里的积分，8000 个可以换 1 节直播课，一天最多换 3 节。买课、打卡、转介绍、试听都能攒，不过要记得年底前用掉，过了 12 月 31 日就清零了。」</p>\n</div>\n"},{"id":"s9","title":"课件升级（V8→V9）","duration":"5-6 分钟","icon":"9","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🆕 V8 版本（2025 年 7 月）</h2>\n  <ul>\n    <li><strong>升级一 · 体系 / 内容升级</strong>：进一步完善校内、拓展、奥数难度规划，从课纲、内容、方法进行调整。</li>\n    <li><strong>升级二 · 课件语种完善</strong>。</li>\n    <li><strong>升级三 · 学习闭环配套升级</strong>：级别覆盖 S4-S7，简体 / 繁体，以口算、笔算、脱式计算为训练核心，学练拓测四步循环持续训练。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🚀 V9 版本（现行）</h2>\n  <ul>\n    <li><strong>升级一 · 课程适配度升级</strong>：S4-S7 难度和课节删减（总框架不变，特色课程保留，超纲和难度过高课程删减）；V8 版本的 S7 级别校内课程严重缺失，新增北美和新加坡四年级校内内容重难点；S8 新增英文课件，本地化语言，内容向海外课纲做难度靠近。</li>\n    <li><strong>升级二 · AI 监控加动态分析</strong>：教研可通过 AI 看到学生的<strong>首答率、末答率</strong>等课程数据，灵活调整课程内容的难度设置，从而提升效果。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 课件版本</p>\n    <p>🔊 视频以 <strong>V8</strong> 为主线讲解，且<strong>未讲到课件升级</strong>。</p>\n    <p>✅ 正确口径：现行最新版本为 <strong>V9</strong>，请以 V9 口径为准（知识点 P-36、P-37）。</p>\n    <p>📖 请以白皮书为准。</p>\n  </div>\n</div>\n"},{"id":"s10","title":"内容更新总表","duration":"3-5 分钟","icon":"10","type":"content","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📌 内容更新总表</h2>\n  <p>本课视频录制于较早版本，以下内容与现行口径不一致。<strong>凡不一致处一律以白皮书 / 本课为准</strong>，避免向家长传达错误信息。</p>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>#</th><th>视频时间点</th><th>视频中的说法</th><th>正确口径</th><th>知识点</th></tr></thead>\n      <tbody>\n        <tr><td>1</td><td>00:01:30 / 00:11:57</td><td>S1 到 S2 是六人班，S3 到 S9 是八人班</td><td><strong>S1 满班 6 人；S2-S9 满班 8 人</strong></td><td>P-14</td></tr>\n        <tr><td>2</td><td>00:15:39</td><td>系统自动预排后续的八级课</td><td>系统自动预排未来 <strong>7 节课</strong></td><td>P-18</td></tr>\n        <tr><td>3</td><td>00:12:16</td><td>可选上课时间从上午 10 点到晚上 8 点 10 分</td><td>周一至周日 <strong>7:00 至 24:00</strong>，多个时段</td><td>P-17</td></tr>\n        <tr><td>4</td><td>00:28:58</td><td>休学有一次停课机会，不超过 30 天</td><td><strong>不同课包对应不同停课机会</strong>，一次不超过 30 天</td><td>P-29</td></tr>\n        <tr><td>5</td><td>00:33:45</td><td>同一课包内先消耗购买的正课，后消耗赠送的课程</td><td><strong>按课时获得的先后顺序</strong>消耗</td><td>P-25</td></tr>\n        <tr><td>6</td><td>全片结构</td><td>只讲行课规则、学习环节、教具教材、豌豆币</td><td>现行还包含<strong>退费与挽单、课件升级</strong>，需一并掌握</td><td>P-32 至 P-37</td></tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"tips-box\">\n    <strong>💡 一句话记住</strong>\n    <p>看到橙色「内容更新提示」卡片，就说明这里视频是旧口径——按卡片上的正确口径跟家长说。</p>\n  </div>\n</div>\n"},{"id":"s11","title":"练习检测","duration":"15-18 分钟","icon":"11","type":"content_quiz","content":"\n<p>这一章用来检测你对本课的掌握程度，共 <strong>9 道题</strong>：6 道综合知识题（每题 4 分）＋ 3 道「向家长说明规则」情境应用题（每题 10 分）。</p>\n<div class=\"quiz-rule-card\">\n  <ul>\n    <li>题目<strong>一道一道解锁</strong>：答对当前这题，才会出现下一题；</li>\n    <li><strong>计分</strong>：首次答对得该题满分；答错后重新作答答对了，得该题一半分；</li>\n    <li>答错可以<strong>重新作答</strong>，不限制次数，页面不会直接告诉你正确答案；</li>\n    <li>页面实时显示你的实际得分，9 道全部答完，本章完成。</li>\n  </ul>\n</div>\n<p>题目全部来自视频和课件讲过的内容。拿不准时，回顾第 2-10 章即可。</p>\n"}],"chapterQuizzes":[[],[{"q":"当前满班人数的正确口径是？","opts":["S1-S2 满班 6 人，S3-S9 满班 8 人（视频中的旧说法）","S1 满班 6 人，S2-S9 满班 8 人","所有级别满班 6 人","所有级别满班 8 人"],"correct":1,"score":4,"feedback_correct":"✅ 对。S1 满班 6 人，S2-S9 满班 8 人。","feedback_wrong":"❌ 正确口径是 S1 满班 6 人、S2-S9 满班 8 人。视频里「S1 到 S2 是六人班」是旧说法。建议回顾第 2 章。"},{"q":"各阶段的单课时长是？","opts":["S1 40 分钟，S2-S9 30 分钟","S1 30 分钟/课时，S2-S9 40 分钟/课时","所有级别都是 30 分钟","所有级别都是 45 分钟"],"correct":1,"score":4,"feedback_correct":"✅ 对。S1 为 30 分钟/课时，S2-S9 为 40 分钟/课时。","feedback_wrong":"❌ S1 是 30 分钟/课时，S2-S9 是 40 分钟/课时。低龄段课时更短，是为了匹配孩子的专注时长。建议回顾第 2 章。"},{"q":"关于系统自动预排课程，正确的是？","opts":["系统自动预排未来 8 节课","系统自动预排未来 7 节课，提前消耗 7 课时，但并非真实划扣","系统不预排课程","预排的课时会被真实划扣"],"correct":1,"score":4,"feedback_correct":"✅ 对。预排 7 节，提前消耗 7 课时但不真实划扣，上一节课才消耗一节课时。","feedback_wrong":"❌ 预排的是未来 7 节课（视频里说「八级课」是旧说法），且预排只是占学位、不是真实划扣。建议回顾第 2 章。"}],[{"q":"关于新生排课，下列描述正确的是？","opts":["新生从所定级别的第一节课开始学习","新生插班到现有进度的老生班，并非从第一节课开始，且首课一定是专题第一讲","新生单独开班，不插班","新生排课由 LP 直接决定，无需教务"],"correct":1,"score":4,"feedback_correct":"✅ 对。新生插班到现有进度的老生班，首课是专题第一讲。","feedback_wrong":"❌ 新生是插班到现有进度的老生班，不是从第一节课开始；首课一定落在专题第一讲。排课由教务负责，LP 核对时间。建议回顾第 3 章。"},{"q":"老生停课后复课，需要符合哪条规则？","opts":["任意讲次都可以衔接","需符合 4x-3 讲，即从新专题的第一讲（单数）插班","只能从第 1 讲重新开始","由家长自由选择插入讲次"],"correct":1,"score":4,"feedback_correct":"✅ 对。复课需符合 4x-3 讲，从新专题第一讲（单数）插班。","feedback_wrong":"❌ 复课要在 4x-3 讲插班，也就是新专题的第一讲（单数），不能随便接。建议回顾第 3 章「复课与螺旋上升」。"},{"q":"关于豌豆的科学分层，下列哪项不正确？","opts":["共 9 个级别","每个级别分 5 个阶段","每个级别共 24 个专题","每个专题 4 讲次"],"correct":1,"score":4,"feedback_correct":"✅ 对。「5 个阶段」是错的，应为 A、B、C、D 四个阶段。","feedback_wrong":"❌ 每个级别分 A、B、C、D 四个阶段（不是 5 个）。4 阶段 × 每阶段 6 个专题 ＝ 24 个专题，每专题 4 讲次。建议回顾第 3 章。"}],[{"q":"家长最晚可自主通过豌豆素质家长端请假的时间是？","opts":["提前 24 小时","课程协议规定的提前 3 小时（建议提前 24 小时）","课前 15 分钟","开课后 10 分钟内"],"correct":1,"score":4,"feedback_correct":"✅ 对。协议口径是提前 3 小时，建议家长尽量提前 24 小时。","feedback_wrong":"❌ 家长端最晚可提前 3 小时操作（建议提前 24 小时）。课前 15 分钟起家长与 LP 都无法操作。建议回顾第 4 章「请假规则」。"},{"q":"关于请假与课时的关系，正确的是？","opts":["任何请假都扣课时","在课包规定的请假次数内请假，扣次数不扣课时；超出次数后请假扣课时","请假次数可以跨课包累加使用","请假永远不扣课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。次数内不扣课时，超出后才扣课时，且次数不跨课包叠加。","feedback_wrong":"❌ 次数内请假只扣次数、不扣课时；超出次数后才扣课时；且课包之间的请假次数不叠加。建议回顾第 4 章「请假次数与课时」。"},{"q":"下列哪种情况不扣课时？","opts":["旷课","直播补课（插班真人补课）","AI 补课（课程回放）","正常上课"],"correct":2,"score":4,"feedback_correct":"✅ 对。AI 补课（课程回放）不扣课时。","feedback_wrong":"❌ AI 补课是看回放，不扣课时；直播补课（插班真人补课）与旷课都要扣课时。建议回顾第 4 章「补课」。"}],[{"q":"关于休学（停课）规则，正确的是？","opts":["停课后学位保留，复课一定回原老师班级","不同课包对应不同停课机会，一次办理不超过 30 天；停课立即释放学位，复课需重新排课，不保证回原班级","停课不释放学位","停课次数不限且不消耗课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。不同课包不同停课机会，一次不超过 30 天，停课立即释放学位、复课需重新排课。","feedback_wrong":"❌ 停课机会随课包而定（不是「只有一次」），一次不超过 30 天；停课后立即释放学位，复课需要重新排课，不保证回原班级。建议回顾第 5 章。"},{"q":"课程有效期如何计算？","opts":["从首次上课日算起","不同课包对应不同有效期，自排课起开始计算，合同可查看","统一为购买日起 1 年","由班主任自由设置"],"correct":1,"score":4,"feedback_correct":"✅ 对。有效期自排课起计算，不同课包不同。","feedback_wrong":"❌ 有效期是自<strong>排课</strong>起开始计算的（含等班、休学等时间），不同课包对应的有效期不同，合同与后台都能查。建议回顾第 5 章。"}],[{"q":"关于退费挽单的归属，正确的是？","opts":["所有退费均由 LP 挽单","四节课内由 CC 挽单，四节课外由 LP 挽单","四节课内由 LP 挽单，四节课外由 CC 挽单","由家长自行选择挽单人"],"correct":1,"score":4,"feedback_correct":"✅ 对。四节课内 CC 挽单，四节课外 LP 挽单。","feedback_wrong":"❌ 归属按 4 节课划线：四节课内由 CC 挽单，四节课外由 LP 挽单，注意不要记反。建议回顾第 6 章「挽单归属」。"},{"q":"新生超过 4 节课后退费，扣费金额的计算方式是？","opts":["剩余课时乘以单价","购买价格除以基础直播课时（不含赠课）再乘以已上课时，以系统自动结算为准","全额退还，不扣费","按合同原价全额扣除"],"correct":1,"score":4,"feedback_correct":"✅ 对。购买价格 ÷ 基础直播课时（不含赠课）× 已上课时。","feedback_wrong":"❌ 扣费金额 ＝ 购买价格 ÷ 基础直播课时（不含赠课）× 已上课时，以系统自动结算为准。注意分母不含赠课。建议回顾第 6 章。"},{"q":"一般情况下退款到账的时间口径是？","opts":["3 个工作日","原路退回统一口径 2-3 周（特殊情况财务线下打款约 1 个月）","当天到账","6 个月"],"correct":1,"score":4,"feedback_correct":"✅ 对。原路退回 2-3 周，特殊情况线下打款约 1 个月。","feedback_wrong":"❌ 统一口径是原路退回 2-3 周；如遇特殊情况需财务线下打款，约 1 个月。不要随口承诺「几天到账」。建议回顾第 6 章。"}],[{"q":"关于教材与教具，下列说法正确的是？","opts":["计算专项突破所有级别都有","豌豆宝典 S1-S9 全有；计算专项突破仅 S4-S9 有；亲子教具仅 S1-S3 发放","所有级别都发放亲子教具","教材需要家长付费购买"],"correct":1,"score":4,"feedback_correct":"✅ 对。豌豆宝典 S1-S9、计算专项突破 S4-S9、亲子教具 S1-S3。","feedback_wrong":"❌ 覆盖范围是：豌豆宝典 S1-S9 全有，计算专项突破仅 S4-S9 有，亲子教具仅 S1-S3 发放。建议回顾第 7 章。"},{"q":"关于教具教材兑换课时，正确的是？","opts":["国内学员均可用教材兑换课时","国内学员不可兑换课时（教具教材为免费福利）；海外与中国台湾地区学员因运费成本可将运费折成课时","所有人都不可以兑换","兑换比例是 8000 教材等于 1 课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。国内不兑换课时，海外与中国台湾地区可将运费折成课时。","feedback_wrong":"❌ 国内学员的教具教材是免费寄送福利，不兑换课时；只有海外与中国台湾地区学员因海运/空运成本较高，可将运费折成课时。建议回顾第 7 章「兑换课时」。"}],[{"q":"关于豌豆币，下列说法正确的是？","opts":["1000 豌豆币兑换 1 节直播课","8000 豌豆币兑换 1 节直播课，每日兑换上限 3 节","豌豆币可长期有效，不清零","学生端可直接用豌豆币兑换直播课"],"correct":1,"score":4,"feedback_correct":"✅ 对。8000 豌豆币＝1 节直播课，每日上限 3 节。","feedback_wrong":"❌ 兑换比例是 8000 豌豆币换 1 节直播课，每日上限 3 节；豌豆币会清零，且只能在家长端使用。建议回顾第 8 章。"},{"q":"豌豆币的有效期规则是？","opts":["永久有效","次年 12 月 31 日清零（1-2 年不等）","当年 6 月 30 日清零","3 年后清零"],"correct":1,"score":4,"feedback_correct":"✅ 对。豌豆币于次年 12 月 31 日清零。","feedback_wrong":"❌ 豌豆币在次年 12 月 31 日清零（1-2 年不等）。每年 12 月起 APP、公众号与班主任都会提醒家长兑换。建议回顾第 8 章。"}],[{"q":"关于课件版本，下列说法正确的是？","opts":["现行最新版本是 V8","现行最新版本是 V9（V8 为 2025 年 7 月的上一版本）","V9 与 V8 完全一致","目前尚未有版本升级"],"correct":1,"score":4,"feedback_correct":"✅ 对。现行最新版本是 V9，V8 为 2025 年 7 月的上一版本。","feedback_wrong":"❌ 现行最新版本是 V9。视频以 V8 为主线且未讲升级，容易被带偏。建议回顾第 9 章。"},{"q":"V9 版本升级中，与「AI 监控加动态分析」相关的内容是？","opts":["增加动画 IP 角色","教研可通过 AI 监控看到学生的首答率、末答率等数据，灵活调整课程难度","增加外教直播","取消所有奥数内容"],"correct":1,"score":4,"feedback_correct":"✅ 对。V9 的 AI 监控可看首答率、末答率，用于动态调整难度。","feedback_wrong":"❌ V9 的「AI 监控加动态分析」指教研可看到学生的首答率、末答率等数据，据此灵活调整课程难度。建议回顾第 9 章。"}],[],[{"q":"豌豆益智课程的授课语言不包括下列哪一项？","opts":["普通话","粤语","德语","全英与中英（中教、外教）"],"correct":2,"score":4,"feedback_correct":"✅ 对。授课语言包括普通话、粤语、全英、中英，不含德语。","feedback_wrong":"❌ 授课语言是普通话、粤语、全英、中英（中教/外教），没有德语。建议回顾第 2 章。"},{"q":"关于可选上课时间，正确的口径是？","opts":["每天上午 10:00 到晚上 20:10","周一至周日（北京时间）7:00 至 24:00，多个时段可选","仅周末可上课","每天固定 18:00 一节课"],"correct":1,"score":4,"feedback_correct":"✅ 对。周一至周日 7:00 至 24:00，多个时段可选。","feedback_wrong":"❌ 正确口径是周一至周日（北京时间）7:00 至 24:00。视频里「上午 10 点到晚上 8 点 10 分」是旧说法。建议回顾第 2 章。"},{"q":"课时消耗的原则是？","opts":["按时长最长的先消耗","按课时获得的先后顺序消耗","按家长指定顺序消耗","随机消耗"],"correct":1,"score":4,"feedback_correct":"✅ 对。按课时获得的先后顺序消耗。","feedback_wrong":"❌ 课时消耗按获得的先后顺序，不要沿用「先正课后赠课」的旧口径。建议回顾第 4 章。"},{"q":"关于 1V1 课包的耗课，正确的是？","opts":["1V1 每次扣 1 课时","1V1 正常耗课 1 次扣 4 课时；若排成小班则按 1 课时每次扣","1V1 不消耗课时","1V1 每次扣 8 课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。1V1 正常一次扣 4 课时，排成小班则按 1 课时每次扣。","feedback_wrong":"❌ 1V1 正常耗课 1 次扣 4 课时；如果排成了小班，就按正常 1 课时 1 次扣。排课由教务进行。建议回顾第 5 章。"},{"q":"关于账号使用，正确的说法是？","opts":["一个账号可绑定多个学生","一个账号只能一个学生上课","一个账号可同时供家长与孩子上课","账号可转让给他人使用"],"correct":1,"score":4,"feedback_correct":"✅ 对。一个账号只能一个学生上课。","feedback_wrong":"❌ 规则是「一个账号只能一个学生上课」。建议回顾第 5 章「其他规则」。"},{"q":"一位学员已上课 3 节，家长提出退费，正确处理是？","opts":["由 LP 直接发起退费，扣除全部费用","属于四节课内，由 CC 挽单；若确需退费，属无忧试学期，全额退费","由教务直接处理，无需挽单","拒绝受理"],"correct":1,"score":4,"feedback_correct":"✅ 对。四节课内由 CC 挽单；确需退费属无忧试学期，全额退费。","feedback_wrong":"❌ 3 节属于四节课内，应由 CC 挽单；若确需退费，属无忧试学期，可全额退费。建议回顾第 6 章。"},{"q":"家长说：「我们下个月要带孩子出国半个月，这段时间的课怎么办？」下列回应最合适的是？","opts":["「直接请假就行，随时可以回来接着上原来的班。」","「可以办理一次停课（休学），一次不超过 30 天。停课后学位会立即释放，复课时需要重新排课，可能无法回到原来的老师和班级，我先帮您评估一下时间。」","「出国就别上课了，回来重新报名。」","「可以一直挂着，不排课也不扣课时。」"],"correct":1,"score":10,"feedback_correct":"✅ 对。用休学规则回应：一次不超 30 天、释放学位、复课重排、不保证原班级，并主动帮家长评估时间。","feedback_wrong":"❌ 关键是讲清三件事：停课一次不超过 30 天、停课后释放学位、复课需重新排课且不保证原班级，再主动帮家长评估时间。A 承诺「随时回原班」是错的，D 说不扣课时也不符合规则。建议回顾第 5 章。"},{"q":"家长问：「孩子这周请了两次假，会不会扣课时？」下列回应最合适的是？","opts":["「请假一律扣课时。」","「在您课包规定的请假次数内请假，只扣请假次数、不扣课时；超出次数后才扣课时。另外 AI 补课（课程回放）是不扣课时的，直播补课才会扣。」","「请假不扣课时，随时都能补。」","「这个我查一下再回复您，具体规则我也不确定。」"],"correct":1,"score":10,"feedback_correct":"✅ 对。讲清次数内不扣课时、超出扣课时，并补充 AI 补课不扣课时。","feedback_wrong":"❌ 最好的回应是讲清「次数内只扣次数、不扣课时，超出才扣课时」，再补充 AI 补课不扣、直播补课才扣。A 与 C 都是绝对化说法，D 显得不专业。建议回顾第 4 章。"},{"q":"家长说：「我朋友是海外学员，教具教材可以换成课时，我们国内是不是也可以换？」下列回应最合适的是？","opts":["「可以，所有人都能兑换。」","「不确定，您自己在 APP 里试一下。」","「国内学员的教具教材是免费寄送的福利，不支持兑换课时；只有海外与中国台湾地区学员因为海运空运成本较高，我们会把这部分运费折成课时返还。您的豌豆宝典和计算专项突破，我们会按阶段分批寄到。」","「教具教材要另外收费，不能白送。」"],"correct":2,"score":10,"feedback_correct":"✅ 对。说明国内为免费福利不兑换，海外与中国台湾地区因运费可折课时，并给出分批寄送安排。","feedback_wrong":"❌ 正确回应是：国内教具教材是免费寄送福利、不兑换课时；只有海外与中国台湾地区学员因海运空运成本高，可将运费折成课时，同时说明教材按阶段分批寄送。A 承诺错误，B 把问题推给家长，D 与事实不符。建议回顾第 7 章。"}]]}</script>
+<script id="appDataJson" type="application/json">{"title":"豌豆产品介绍（下）","lsPrefix":"cn_lp_product_down","orgName":"豌豆思维","videoMaxRate":1.25,"sections":[{"id":"s1","title":"看视频 · 产品下","duration":"约 57 分钟","icon":"1","type":"video","content":"\n<div class=\"goal-card\">\n  <h3>🎯 学习目标</h3>\n  <p>看完这节课，你要能做到：</p>\n  <ul>\n    <li>把 <strong>班型、课时、排课、请假补课</strong> 这些高频规则说准，尤其满班人数、课时长度、预排节数不能记错；</li>\n    <li>讲清 <strong>有效期、休学、退费挽单</strong> 的处理流程和归属，知道什么情况该找谁；</li>\n    <li>说清 <strong>教具教材的发放与寄送、豌豆币的用法</strong>，以及 <strong>V8→V9 课件升级</strong> 变了什么。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🎬 完整视频：产品下（约 57 分钟）</h2>\n  <p>视频为培训现场实录，请<strong>完整观看</strong>（可自由拖动进度条回看，看满 95% 即可解锁下一章）。建议边看边对照下方的要点导读。</p>\n  <div class=\"video-wrapper\">\n    <!-- 视频超出 GitHub Pages 单文件直传限制，放在本仓库 Release 资源里引用 -->\n    <video controls preload=\"metadata\" playsinline>\n      <source src=\"https://github.com/ruanqiaoyun0-a11y/cn-lp-product-down/releases/download/v1.0/product-down.mp4\" type=\"video/mp4\">\n      你的浏览器不支持视频播放。\n    </video>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📌 本视频要点导读</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>看视频时重点抓这几条</th><th>对应章节</th></tr></thead>\n      <tbody>\n        <tr><td>班型与课时：满班人数、单课时长、授课语言、可选时段</td><td>第 2 章</td></tr>\n        <tr><td>排课规则：新生插班、老生调班、复课 4x-3 讲、开班节奏</td><td>第 3 章</td></tr>\n        <tr><td>请假与补课：请假时间、次数与扣课时、AI 补课不扣课时</td><td>第 4 章</td></tr>\n        <tr><td>有效期与休学：有效期怎么算、停课释放学位</td><td>第 5 章</td></tr>\n        <tr><td>教具教材与豌豆币：分批寄送、8000 豌豆币＝1 节直播课</td><td>第 7、8 章</td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"note-card update-notice\">\n  <p class=\"un-title\">⚠️ 内容更新提示 · 满班人数（务必以本课口径为准）</p>\n  <p>🔊 视频 / 课件中为：<strong>「S1 到 S2 是六人班，S3 到 S9 是八人班」</strong></p>\n  <p>✅ 正确口径：<strong>S1 满班 6 人；S2-S9 满班 8 人。</strong></p>\n  <p>📖 请以白皮书为准，避免向家长传达错误信息（对应知识点 P-14）。</p>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💡 怎么用这段视频</strong>\n  <p>这一课讲的多是<strong>规则口径</strong>，错一个字就可能给家长错误承诺。第一遍先看整体流程，第二遍按「一、二、三」的节点核对细节。凡是视频里与橙色提示卡冲突的地方，一律按提示卡。</p>\n</div>\n"},{"id":"s2","title":"班型与课程设置","duration":"8-10 分钟","icon":"2","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">👥 班型与课时长度</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>项目</th><th>口径</th></tr></thead>\n      <tbody>\n        <tr><td>S1 满班人数</td><td><strong>6 人</strong></td></tr>\n        <tr><td>S2-S9 满班人数</td><td><strong>8 人</strong></td></tr>\n        <tr><td>S1 单课时长</td><td><strong>30 分钟</strong>/课时</td></tr>\n        <tr><td>S2-S9 单课时长</td><td><strong>40 分钟</strong>/课时</td></tr>\n      </tbody>\n    </table>\n  </div>\n  <p><strong>开新班门槛</strong>：需满足班级人数 <strong>50%</strong> 才开班。即 S1 需满 3 人、S2-S9 需满 4 人。日常排课<strong>首选插班</strong>，不建议开新班。</p>\n</div>\n\n<div class=\"note-card update-notice\">\n  <p class=\"un-title\">⚠️ 内容更新提示 · 满班人数</p>\n  <p>🔊 视频（00:01:30、00:11:57）与课件中为：「S1 到 S2 是六人班，S3 到 S9 是八人班」</p>\n  <p>✅ 正确口径：<strong>S1 满班 6 人；S2-S9 满班 8 人。</strong></p>\n  <p>📖 请以白皮书为准（知识点 P-14）。这一条最容易被家长追问，务必记准。</p>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🌐 授课语言与上课时间</h2>\n  <ul>\n    <li><strong>授课语言</strong>：普通话、粤语、全英、中英（中教 / 外教）；中国台湾地区为台湾普通话配繁体课件。</li>\n    <li><strong>可选时间</strong>：周一至周日（北京时间）<strong>7:00 至 24:00</strong>，多个时段可选。</li>\n    <li><strong>上课节奏</strong>：固定一周 2 节课；<strong>固定老师、固定班级、固定学伴</strong>。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 可选上课时间</p>\n    <p>🔊 视频（00:12:16）中为：「可选上课时间从上午 10 点到晚上 8 点 10 分」</p>\n    <p>✅ 正确口径：<strong>周一至周日（北京时间）7:00 至 24:00，多个时段可选。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-17）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🗓 系统预排</h2>\n  <p>系统会自动预排未来 <strong>7 节课</strong>，提前消耗 <strong>7 课时</strong>，但这<strong>并非真实划扣</strong>，只是帮孩子占学位；<strong>上一节课才消耗一节课时</strong>。</p>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 系统预排节数</p>\n    <p>🔊 视频（00:15:39）中为：「系统会自动预排后续的<strong>八级</strong>课」</p>\n    <p>✅ 正确口径：<strong>系统自动预排未来 7 节课。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-18）。</p>\n  </div>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「我们是小班，S1 一个班最多 6 个孩子，S2 往上最多 8 个。上课时间是每天早上 7 点到晚上 12 点，您可以挑方便的时段，固定在同一个班、同一个老师、同一批同学。」</p>\n</div>\n"},{"id":"s3","title":"排课规则与分层","duration":"8-10 分钟","icon":"3","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🔀 新生与老生排课</h2>\n  <ul>\n    <li><strong>新生</strong>：前端销售签单后，家长确认开课时间，由<strong>教务排课</strong>，排好后才流转至 LP 服务；LP 需要核对上课时间是否有误。</li>\n    <li><strong>老生</strong>：因时间、老师、级别不合适造成调班，由 <strong>LP 发起调课</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📈 排课进度怎么对</h2>\n  <ul>\n    <li>新生<strong>插班</strong>到现有进度的老生班，<strong>并非从所定级别的第一节课开始</strong>。</li>\n    <li>新生首课一定是<strong>专题第一讲</strong>，并随当前教学进度走。</li>\n    <li>老生换级别、新生插班，都从<strong>当前进度插入</strong>；老生换老师、换时间不涉及知识点变化，按原进度继续。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 复课与螺旋上升</h2>\n  <ul>\n    <li>老生停课后复课，需符合 <strong>4x-3 讲</strong>，即从<strong>新专题的第一讲（单数）</strong>插班（X 为专题数）。</li>\n    <li>课程难度<strong>螺旋式上升</strong>：专题与专题之间无直接关系，但讲次与讲次之间必然联系；每个 <strong>4 节课</strong>为一个完整专题，<strong>专题第一讲一定是单数</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🧱 科学分层与开班节奏</h2>\n  <ul>\n    <li>共 <strong>9 个级别</strong>，每个级别 <strong>96 节课</strong>，分 <strong>A、B、C、D 四个阶段</strong>；每阶段 <strong>6 个专题</strong>，每专题 <strong>4 讲次</strong>；一个级别共 <strong>24 个专题</strong>。</li>\n    <li>所有新级别在 <strong>6 月 30 日（最后一个周末）至 7 月初</strong> 开始进入新级别学习；7 月滚动开班，8 月起顺着前面的顺序继续。</li>\n    <li>96 节课结束后，剩余周次安排衔接 / 进阶课程。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💡 一句话记住</strong>\n  <p>「4 节课一个专题、第一讲是单数」——所以复课要在 4x-3 讲插班，才能从新专题的第一讲接上。</p>\n</div>\n"},{"id":"s4","title":"请假与补课","duration":"8-10 分钟","icon":"4","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📅 请假规则</h2>\n  <ul>\n    <li>建议家长<strong>提前 24 小时</strong>请假，最晚可自主通过<strong>豌豆素质家长端</strong>操作（课程协议规定提前 <strong>3 小时</strong>）。</li>\n    <li><strong>课前 15 分钟</strong>起，家长与 LP 均无法操作请假；<strong>主讲老师可以操作</strong>（因为考勤由主讲老师在课后填写）。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔢 请假次数与课时</h2>\n  <ul>\n    <li><strong>不同课包请假次数不同</strong>：课时多的课包请假次数多，课时少则少，以后台数据为准。</li>\n    <li>在请假次数内请假：<strong>扣请假次数，不扣课时</strong>。</li>\n    <li>超出请假次数后请假：改为<strong>扣课时</strong>，每次请假扣 1 个课时。</li>\n    <li>课包之间的请假次数<strong>不叠加</strong>，不能用下一个课包的次数补上一个课包。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">💳 课时消耗与旷课</h2>\n  <ul>\n    <li><strong>课时消耗原则</strong>：按<strong>课时获得的先后顺序</strong>消耗。</li>\n    <li><strong>旷课</strong>：扣 1 课时。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 课时消耗顺序</p>\n    <p>🔊 视频（00:33:45）中为：「同一课包内<strong>先消耗购买的正课，后消耗赠送的课程</strong>」</p>\n    <p>✅ 正确口径：<strong>按课时获得的先后顺序消耗。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-25）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 补课</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>补课方式</th><th>说明</th><th>是否扣课时</th></tr></thead>\n      <tbody>\n        <tr><td>直播补课</td><td>插班真人补课，由 LP 安排</td><td><strong>扣课时</strong></td></tr>\n        <tr><td>AI 补课</td><td>课程回放，<strong>仅在请假状态下</strong>可生成</td><td><strong>不扣课时</strong></td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「在您课包规定的请假次数内请假，只扣请假次数、不扣课时；超出次数之后才会扣课时。另外 AI 补课是看回放，不扣课时；插班真人补课才会扣。」</p>\n</div>\n"},{"id":"s5","title":"有效期与休学","duration":"6-8 分钟","icon":"5","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">⏳ 课程有效期</h2>\n  <ul>\n    <li>不同课包对应<strong>不同有效期</strong>，<strong>自排课起开始计算</strong>（含等班、休学等时间），所以通常比实际上课时间长一些。</li>\n    <li>合同与后台均可查看。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🛑 休学（停课）规则</h2>\n  <ul>\n    <li><strong>不同课包对应不同停课机会</strong>，一次办理<strong>不超过 30 天</strong>。</li>\n    <li>第 31 天未排课，会自动按<strong>每周 2 节</strong>划扣课时；特殊情况可延长。</li>\n    <li>停课后<strong>立即释放学位</strong>；复课需<strong>重新排课</strong>，<strong>无法保证回到原老师班级</strong>，班主任需提前告知家长。</li>\n    <li>休学期间的课<strong>无法补课</strong>（对应课件已锁定，进度已往前推进）。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 休学次数</p>\n    <p>🔊 视频（00:28:58）中为：「休学有<strong>一次</strong>停课机会，不超过 30 天」</p>\n    <p>✅ 正确口径：<strong>不同课包对应不同停课机会，一次办理不超过 30 天。</strong></p>\n    <p>📖 请以白皮书为准（知识点 P-29）。</p>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📋 其他规则</h2>\n  <ul>\n    <li><strong>一个账号只能一个学生上课。</strong></li>\n    <li><strong>1V1 课包</strong>：正常耗课 1 次扣 <strong>4 课时</strong>；如果排成了小班，就按正常 <strong>1 课时 1 次</strong>扣；排课由教务进行。</li>\n  </ul>\n</div>\n"},{"id":"s6","title":"退费与挽单","duration":"6-8 分钟","icon":"6","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🤝 挽单归属</h2>\n  <ul>\n    <li><strong>四节课内</strong>：由 <strong>CC 挽单</strong>。</li>\n    <li><strong>四节课外</strong>：由 <strong>LP 挽单</strong>。</li>\n    <li>LP 挽单必须有完整的<strong>一挽、二挽流程</strong>；挽单失败后 <strong>48 小时内</strong>由 OA 发起退费申请。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">💰 退费计算与时效</h2>\n  <ul>\n    <li>新生在 <strong>4 节课内</strong>：无忧试学，<strong>全额退费</strong>。</li>\n    <li>超过 4 节课退费：<strong>购买价格 ÷ 基础直播课时（不含赠课）× 已上课时</strong> ＝ 扣费金额，以系统自动结算为准。</li>\n    <li><strong>退款时效</strong>：一般原路退回，统一口径 <strong>2-3 周</strong>；如遇特殊情况需财务线下打款，统一口径约 <strong>1 个月</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「退费按合同和系统结算来，一般是原路退回，2-3 周能到账；如果走财务线下打款，大概 1 个月。我先帮您把情况登记清楚，流程我全程跟着。」</p>\n</div>\n"},{"id":"s7","title":"教具教材与寄送","duration":"6-8 分钟","icon":"7","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📚 教材构成</h2>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>教材</th><th>覆盖级别</th><th>说明</th></tr></thead>\n      <tbody>\n        <tr><td>豌豆宝典</td><td>S1-S9</td><td>分四个部分：要点总结、分环节实战练习（三星/五星难度分层）、学习笔记、大开眼界</td></tr>\n        <tr><td>计算专项突破</td><td>S4-S9</td><td>一季度一册，一年 4 册，一周练 3 次，爬坡式训练，明确标注第一周/第二周/第三周</td></tr>\n        <tr><td>全年课程图谱</td><td>S4-S9</td><td>标注每个板块属于校内、进阶还是奥数，方便给家长做课程规划</td></tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🧸 教具</h2>\n  <ul>\n    <li><strong>S1-S3</strong> 发放<strong>亲子教具</strong>（课后亲子思维游戏）；原「思维互动卡、自由闯关图、习惯表」已停发，改为计算专项突破。</li>\n    <li>教具不会玩时，可在与教研对接的群内索取<strong>指导视频</strong>，再转发给家长。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">📦 寄送规则</h2>\n  <ul>\n    <li>由仓库按 <strong>A、B、C、D 每个阶段的首页分批发货</strong>，不一次性寄送；按实际排课讲次发放（如从 B1 开始就发 B1 至 B6，从 B5 开始就发 B5 至 B6）。</li>\n    <li><strong>不与家长保证开课前一定收到教材</strong>，一般开课前后 3 天到货；因每 4 节课才做一次练习，晚到不影响学习，先安抚家长并在仓库对接群催促发货。</li>\n    <li>家长着急时，可下载对应进度的<strong>电子教材</strong>发给家长；注意下载链接含内部资料，<strong>不要直接转发链接</strong>。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🔁 兑换课时</h2>\n  <ul>\n    <li><strong>国内学员</strong>：教具教材是免费寄送的福利，<strong>不支持兑换课时</strong>。</li>\n    <li><strong>海外与中国台湾地区学员</strong>：因海运 / 空运成本较高，可将这部分运费<strong>折成课时返还</strong>。</li>\n  </ul>\n</div>\n"},{"id":"s8","title":"豌豆币","duration":"5-6 分钟","icon":"8","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🪙 豌豆币是什么</h2>\n  <ul>\n    <li><strong>定义</strong>：豌豆商城中的一种积分称呼。</li>\n    <li><strong>用途</strong>：可在豌豆商城兑换实物礼品、直播课或录播课。</li>\n    <li><strong>兑换比例</strong>：<strong>8000 豌豆币兑换 1 节直播课</strong>；每日兑换上限 <strong>3 节</strong>。</li>\n    <li><strong>获取途径</strong>：购买正课课包、参加打卡、转介绍、视听。</li>\n    <li><strong>使用端</strong>：只能在<strong>家长端</strong>使用；学生端可以生成订单但只有选择权，订单进入家长端由家长确认（学生端可选的都是实物礼品）。</li>\n    <li><strong>有效期</strong>：<strong>次年 12 月 31 日清零</strong>（1-2 年不等）。每年 12 月起，APP、公众号与班主任都会提醒家长兑换。</li>\n  </ul>\n</div>\n\n<div class=\"tips-box\">\n  <strong>💬 跟家长可以这样说</strong>\n  <p>「豌豆币是商城里的积分，8000 个可以换 1 节直播课，一天最多换 3 节。买课、打卡、转介绍、试听都能攒，不过要记得年底前用掉，过了 12 月 31 日就清零了。」</p>\n</div>\n"},{"id":"s9","title":"课件升级（V8→V9）","duration":"5-6 分钟","icon":"9","type":"content_quiz","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">🆕 V8 版本（2025 年 7 月）</h2>\n  <ul>\n    <li><strong>升级一 · 体系 / 内容升级</strong>：进一步完善校内、拓展、奥数难度规划，从课纲、内容、方法进行调整。</li>\n    <li><strong>升级二 · 课件语种完善</strong>。</li>\n    <li><strong>升级三 · 学习闭环配套升级</strong>：级别覆盖 S4-S7，简体 / 繁体，以口算、笔算、脱式计算为训练核心，学练拓测四步循环持续训练。</li>\n  </ul>\n</div>\n\n<div class=\"card\">\n  <h2 class=\"card-title\">🚀 V9 版本（现行）</h2>\n  <ul>\n    <li><strong>升级一 · 课程适配度升级</strong>：S4-S7 难度和课节删减（总框架不变，特色课程保留，超纲和难度过高课程删减）；V8 版本的 S7 级别校内课程严重缺失，新增北美和新加坡四年级校内内容重难点；S8 新增英文课件，本地化语言，内容向海外课纲做难度靠近。</li>\n    <li><strong>升级二 · AI 监控加动态分析</strong>：教研可通过 AI 看到学生的<strong>首答率、末答率</strong>等课程数据，灵活调整课程内容的难度设置，从而提升效果。</li>\n  </ul>\n  <div class=\"note-card update-notice\">\n    <p class=\"un-title\">⚠️ 内容更新提示 · 课件版本</p>\n    <p>🔊 视频以 <strong>V8</strong> 为主线讲解，且<strong>未讲到课件升级</strong>。</p>\n    <p>✅ 正确口径：现行最新版本为 <strong>V9</strong>，请以 V9 口径为准（知识点 P-36、P-37）。</p>\n    <p>📖 请以白皮书为准。</p>\n  </div>\n</div>\n"},{"id":"s10","title":"内容更新总表","duration":"3-5 分钟","icon":"10","type":"content","content":"\n<div class=\"card\">\n  <h2 class=\"card-title\">📌 内容更新总表</h2>\n  <p>本课视频录制于较早版本，以下内容与现行口径不一致。<strong>凡不一致处一律以白皮书 / 本课为准</strong>，避免向家长传达错误信息。</p>\n  <div class=\"table-wrap\">\n    <table>\n      <thead><tr><th>#</th><th>视频时间点</th><th>视频中的说法</th><th>正确口径</th><th>知识点</th></tr></thead>\n      <tbody>\n        <tr><td>1</td><td>00:01:30 / 00:11:57</td><td>S1 到 S2 是六人班，S3 到 S9 是八人班</td><td><strong>S1 满班 6 人；S2-S9 满班 8 人</strong></td><td>P-14</td></tr>\n        <tr><td>2</td><td>00:15:39</td><td>系统自动预排后续的八级课</td><td>系统自动预排未来 <strong>7 节课</strong></td><td>P-18</td></tr>\n        <tr><td>3</td><td>00:12:16</td><td>可选上课时间从上午 10 点到晚上 8 点 10 分</td><td>周一至周日 <strong>7:00 至 24:00</strong>，多个时段</td><td>P-17</td></tr>\n        <tr><td>4</td><td>00:28:58</td><td>休学有一次停课机会，不超过 30 天</td><td><strong>不同课包对应不同停课机会</strong>，一次不超过 30 天</td><td>P-29</td></tr>\n        <tr><td>5</td><td>00:33:45</td><td>同一课包内先消耗购买的正课，后消耗赠送的课程</td><td><strong>按课时获得的先后顺序</strong>消耗</td><td>P-25</td></tr>\n        <tr><td>6</td><td>全片结构</td><td>只讲行课规则、学习环节、教具教材、豌豆币</td><td>现行还包含<strong>退费与挽单、课件升级</strong>，需一并掌握</td><td>P-32 至 P-37</td></tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"tips-box\">\n    <strong>💡 一句话记住</strong>\n    <p>看到橙色「内容更新提示」卡片，就说明这里视频是旧口径——按卡片上的正确口径跟家长说。</p>\n  </div>\n</div>\n"},{"id":"s11","title":"练习检测","duration":"15-18 分钟","icon":"11","type":"content_quiz","content":"\n<p>这一章用来检测你对本课的掌握程度，共 <strong>9 道题</strong>：6 道综合知识题（每题 4 分）＋ 3 道「向家长说明规则」情境应用题（每题 10 分）。</p>\n<div class=\"quiz-rule-card\">\n  <ul>\n    <li>题目<strong>一道一道解锁</strong>：答对当前这题，才会出现下一题；</li>\n    <li><strong>计分</strong>：首次答对得该题满分；答错后重新作答答对了，得该题一半分；</li>\n    <li>答错可以<strong>重新作答</strong>，不限制次数，页面不会直接告诉你正确答案；</li>\n    <li>页面实时显示你的实际得分，9 道全部答完，本章完成。</li>\n  </ul>\n</div>\n<p>题目全部来自视频和课件讲过的内容。拿不准时，回顾第 2-10 章即可。</p>\n"}],"chapterQuizzes":[[],[{"q":"当前满班人数的正确口径是？","opts":["S1-S2 满班 6 人，S3-S9 满班 8 人（视频中的旧说法）","S1 满班 6 人，S2-S9 满班 8 人","所有级别满班 6 人","所有级别满班 8 人"],"correct":1,"score":4,"feedback_correct":"✅ 对。S1 满班 6 人，S2-S9 满班 8 人。","feedback_wrong":"❌ 正确口径是 S1 满班 6 人、S2-S9 满班 8 人。视频里「S1 到 S2 是六人班」是旧说法。建议回顾第 2 章。"},{"q":"各阶段的单课时长是？","opts":["S1 40 分钟，S2-S9 30 分钟","S1 30 分钟/课时，S2-S9 40 分钟/课时","所有级别都是 30 分钟","所有级别都是 45 分钟"],"correct":1,"score":4,"feedback_correct":"✅ 对。S1 为 30 分钟/课时，S2-S9 为 40 分钟/课时。","feedback_wrong":"❌ S1 是 30 分钟/课时，S2-S9 是 40 分钟/课时。低龄段课时更短，是为了匹配孩子的专注时长。建议回顾第 2 章。"},{"q":"关于系统自动预排课程，正确的是？","opts":["系统自动预排未来 8 节课","系统自动预排未来 7 节课，提前消耗 7 课时，但并非真实划扣","系统不预排课程","预排的课时会被真实划扣"],"correct":1,"score":4,"feedback_correct":"✅ 对。预排 7 节，提前消耗 7 课时但不真实划扣，上一节课才消耗一节课时。","feedback_wrong":"❌ 预排的是未来 7 节课（视频里说「八级课」是旧说法），且预排只是占学位、不是真实划扣。建议回顾第 2 章。"}],[{"q":"关于新生排课，下列描述正确的是？","opts":["新生从所定级别的第一节课开始学习","新生插班到现有进度的老生班，并非从第一节课开始，且首课一定是专题第一讲","新生单独开班，不插班","新生排课由 LP 直接决定，无需教务"],"correct":1,"score":4,"feedback_correct":"✅ 对。新生插班到现有进度的老生班，首课是专题第一讲。","feedback_wrong":"❌ 新生是插班到现有进度的老生班，不是从第一节课开始；首课一定落在专题第一讲。排课由教务负责，LP 核对时间。建议回顾第 3 章。"},{"q":"老生停课后复课，需要符合哪条规则？","opts":["任意讲次都可以衔接","需符合 4x-3 讲，即从新专题的第一讲（单数）插班","只能从第 1 讲重新开始","由家长自由选择插入讲次"],"correct":1,"score":4,"feedback_correct":"✅ 对。复课需符合 4x-3 讲，从新专题第一讲（单数）插班。","feedback_wrong":"❌ 复课要在 4x-3 讲插班，也就是新专题的第一讲（单数），不能随便接。建议回顾第 3 章「复课与螺旋上升」。"},{"q":"关于豌豆的科学分层，下列哪项不正确？","opts":["共 9 个级别","每个级别分 5 个阶段","每个级别共 24 个专题","每个专题 4 讲次"],"correct":1,"score":4,"feedback_correct":"✅ 对。「5 个阶段」是错的，应为 A、B、C、D 四个阶段。","feedback_wrong":"❌ 每个级别分 A、B、C、D 四个阶段（不是 5 个）。4 阶段 × 每阶段 6 个专题 ＝ 24 个专题，每专题 4 讲次。建议回顾第 3 章。"}],[{"q":"家长最晚可自主通过豌豆素质家长端请假的时间是？","opts":["提前 24 小时","课程协议规定的提前 3 小时（建议提前 24 小时）","课前 15 分钟","开课后 10 分钟内"],"correct":1,"score":4,"feedback_correct":"✅ 对。协议口径是提前 3 小时，建议家长尽量提前 24 小时。","feedback_wrong":"❌ 家长端最晚可提前 3 小时操作（建议提前 24 小时）。课前 15 分钟起家长与 LP 都无法操作。建议回顾第 4 章「请假规则」。"},{"q":"关于请假与课时的关系，正确的是？","opts":["任何请假都扣课时","在课包规定的请假次数内请假，扣次数不扣课时；超出次数后请假扣课时","请假次数可以跨课包累加使用","请假永远不扣课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。次数内不扣课时，超出后才扣课时，且次数不跨课包叠加。","feedback_wrong":"❌ 次数内请假只扣次数、不扣课时；超出次数后才扣课时；且课包之间的请假次数不叠加。建议回顾第 4 章「请假次数与课时」。"},{"q":"下列哪种情况不扣课时？","opts":["旷课","直播补课（插班真人补课）","AI 补课（课程回放）","正常上课"],"correct":2,"score":4,"feedback_correct":"✅ 对。AI 补课（课程回放）不扣课时。","feedback_wrong":"❌ AI 补课是看回放，不扣课时；直播补课（插班真人补课）与旷课都要扣课时。建议回顾第 4 章「补课」。"}],[{"q":"关于休学（停课）规则，正确的是？","opts":["停课后学位保留，复课一定回原老师班级","不同课包对应不同停课机会，一次办理不超过 30 天；停课立即释放学位，复课需重新排课，不保证回原班级","停课不释放学位","停课次数不限且不消耗课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。不同课包不同停课机会，一次不超过 30 天，停课立即释放学位、复课需重新排课。","feedback_wrong":"❌ 停课机会随课包而定（不是「只有一次」），一次不超过 30 天；停课后立即释放学位，复课需要重新排课，不保证回原班级。建议回顾第 5 章。"},{"q":"课程有效期如何计算？","opts":["从首次上课日算起","不同课包对应不同有效期，自排课起开始计算，合同可查看","统一为购买日起 1 年","由班主任自由设置"],"correct":1,"score":4,"feedback_correct":"✅ 对。有效期自排课起计算，不同课包不同。","feedback_wrong":"❌ 有效期是自<strong>排课</strong>起开始计算的（含等班、休学等时间），不同课包对应的有效期不同，合同与后台都能查。建议回顾第 5 章。"}],[{"q":"关于退费挽单的归属，正确的是？","opts":["所有退费均由 LP 挽单","四节课内由 CC 挽单，四节课外由 LP 挽单","四节课内由 LP 挽单，四节课外由 CC 挽单","由家长自行选择挽单人"],"correct":1,"score":4,"feedback_correct":"✅ 对。四节课内 CC 挽单，四节课外 LP 挽单。","feedback_wrong":"❌ 归属按 4 节课划线：四节课内由 CC 挽单，四节课外由 LP 挽单，注意不要记反。建议回顾第 6 章「挽单归属」。"},{"q":"新生超过 4 节课后退费，扣费金额的计算方式是？","opts":["剩余课时乘以单价","购买价格除以基础直播课时（不含赠课）再乘以已上课时，以系统自动结算为准","全额退还，不扣费","按合同原价全额扣除"],"correct":1,"score":4,"feedback_correct":"✅ 对。购买价格 ÷ 基础直播课时（不含赠课）× 已上课时。","feedback_wrong":"❌ 扣费金额 ＝ 购买价格 ÷ 基础直播课时（不含赠课）× 已上课时，以系统自动结算为准。注意分母不含赠课。建议回顾第 6 章。"},{"q":"一般情况下退款到账的时间口径是？","opts":["3 个工作日","原路退回统一口径 2-3 周（特殊情况财务线下打款约 1 个月）","当天到账","6 个月"],"correct":1,"score":4,"feedback_correct":"✅ 对。原路退回 2-3 周，特殊情况线下打款约 1 个月。","feedback_wrong":"❌ 统一口径是原路退回 2-3 周；如遇特殊情况需财务线下打款，约 1 个月。不要随口承诺「几天到账」。建议回顾第 6 章。"}],[{"q":"关于教材与教具，下列说法正确的是？","opts":["计算专项突破所有级别都有","豌豆宝典 S1-S9 全有；计算专项突破仅 S4-S9 有；亲子教具仅 S1-S3 发放","所有级别都发放亲子教具","教材需要家长付费购买"],"correct":1,"score":4,"feedback_correct":"✅ 对。豌豆宝典 S1-S9、计算专项突破 S4-S9、亲子教具 S1-S3。","feedback_wrong":"❌ 覆盖范围是：豌豆宝典 S1-S9 全有，计算专项突破仅 S4-S9 有，亲子教具仅 S1-S3 发放。建议回顾第 7 章。"},{"q":"关于教具教材兑换课时，正确的是？","opts":["国内学员均可用教材兑换课时","国内学员不可兑换课时（教具教材为免费福利）；海外与中国台湾地区学员因运费成本可将运费折成课时","所有人都不可以兑换","兑换比例是 8000 教材等于 1 课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。国内不兑换课时，海外与中国台湾地区可将运费折成课时。","feedback_wrong":"❌ 国内学员的教具教材是免费寄送福利，不兑换课时；只有海外与中国台湾地区学员因海运/空运成本较高，可将运费折成课时。建议回顾第 7 章「兑换课时」。"}],[{"q":"关于豌豆币，下列说法正确的是？","opts":["1000 豌豆币兑换 1 节直播课","8000 豌豆币兑换 1 节直播课，每日兑换上限 3 节","豌豆币可长期有效，不清零","学生端可直接用豌豆币兑换直播课"],"correct":1,"score":4,"feedback_correct":"✅ 对。8000 豌豆币＝1 节直播课，每日上限 3 节。","feedback_wrong":"❌ 兑换比例是 8000 豌豆币换 1 节直播课，每日上限 3 节；豌豆币会清零，且只能在家长端使用。建议回顾第 8 章。"},{"q":"豌豆币的有效期规则是？","opts":["永久有效","次年 12 月 31 日清零（1-2 年不等）","当年 6 月 30 日清零","3 年后清零"],"correct":1,"score":4,"feedback_correct":"✅ 对。豌豆币于次年 12 月 31 日清零。","feedback_wrong":"❌ 豌豆币在次年 12 月 31 日清零（1-2 年不等）。每年 12 月起 APP、公众号与班主任都会提醒家长兑换。建议回顾第 8 章。"}],[{"q":"关于课件版本，下列说法正确的是？","opts":["现行最新版本是 V8","现行最新版本是 V9（V8 为 2025 年 7 月的上一版本）","V9 与 V8 完全一致","目前尚未有版本升级"],"correct":1,"score":4,"feedback_correct":"✅ 对。现行最新版本是 V9，V8 为 2025 年 7 月的上一版本。","feedback_wrong":"❌ 现行最新版本是 V9。视频以 V8 为主线且未讲升级，容易被带偏。建议回顾第 9 章。"},{"q":"V9 版本升级中，与「AI 监控加动态分析」相关的内容是？","opts":["增加动画 IP 角色","教研可通过 AI 监控看到学生的首答率、末答率等数据，灵活调整课程难度","增加外教直播","取消所有奥数内容"],"correct":1,"score":4,"feedback_correct":"✅ 对。V9 的 AI 监控可看首答率、末答率，用于动态调整难度。","feedback_wrong":"❌ V9 的「AI 监控加动态分析」指教研可看到学生的首答率、末答率等数据，据此灵活调整课程难度。建议回顾第 9 章。"}],[],[{"q":"豌豆益智课程的授课语言不包括下列哪一项？","opts":["普通话","粤语","德语","全英与中英（中教、外教）"],"correct":2,"score":4,"feedback_correct":"✅ 对。授课语言包括普通话、粤语、全英、中英，不含德语。","feedback_wrong":"❌ 授课语言是普通话、粤语、全英、中英（中教/外教），没有德语。建议回顾第 2 章。"},{"q":"关于可选上课时间，正确的口径是？","opts":["每天上午 10:00 到晚上 20:10","周一至周日（北京时间）7:00 至 24:00，多个时段可选","仅周末可上课","每天固定 18:00 一节课"],"correct":1,"score":4,"feedback_correct":"✅ 对。周一至周日 7:00 至 24:00，多个时段可选。","feedback_wrong":"❌ 正确口径是周一至周日（北京时间）7:00 至 24:00。视频里「上午 10 点到晚上 8 点 10 分」是旧说法。建议回顾第 2 章。"},{"q":"课时消耗的原则是？","opts":["按时长最长的先消耗","按课时获得的先后顺序消耗","按家长指定顺序消耗","随机消耗"],"correct":1,"score":4,"feedback_correct":"✅ 对。按课时获得的先后顺序消耗。","feedback_wrong":"❌ 课时消耗按获得的先后顺序，不要沿用「先正课后赠课」的旧口径。建议回顾第 4 章。"},{"q":"关于 1V1 课包的耗课，正确的是？","opts":["1V1 每次扣 1 课时","1V1 正常耗课 1 次扣 4 课时；若排成小班则按 1 课时每次扣","1V1 不消耗课时","1V1 每次扣 8 课时"],"correct":1,"score":4,"feedback_correct":"✅ 对。1V1 正常一次扣 4 课时，排成小班则按 1 课时每次扣。","feedback_wrong":"❌ 1V1 正常耗课 1 次扣 4 课时；如果排成了小班，就按正常 1 课时 1 次扣。排课由教务进行。建议回顾第 5 章。"},{"q":"关于账号使用，正确的说法是？","opts":["一个账号可绑定多个学生","一个账号只能一个学生上课","一个账号可同时供家长与孩子上课","账号可转让给他人使用"],"correct":1,"score":4,"feedback_correct":"✅ 对。一个账号只能一个学生上课。","feedback_wrong":"❌ 规则是「一个账号只能一个学生上课」。建议回顾第 5 章「其他规则」。"},{"q":"一位学员已上课 3 节，家长提出退费，正确处理是？","opts":["由 LP 直接发起退费，扣除全部费用","属于四节课内，由 CC 挽单；若确需退费，属无忧试学期，全额退费","由教务直接处理，无需挽单","拒绝受理"],"correct":1,"score":4,"feedback_correct":"✅ 对。四节课内由 CC 挽单；确需退费属无忧试学期，全额退费。","feedback_wrong":"❌ 3 节属于四节课内，应由 CC 挽单；若确需退费，属无忧试学期，可全额退费。建议回顾第 6 章。"},{"q":"家长说：「我们下个月要带孩子出国半个月，这段时间的课怎么办？」下列回应最合适的是？","opts":["「直接请假就行，随时可以回来接着上原来的班。」","「可以办理一次停课（休学），一次不超过 30 天。停课后学位会立即释放，复课时需要重新排课，可能无法回到原来的老师和班级，我先帮您评估一下时间。」","「出国就别上课了，回来重新报名。」","「可以一直挂着，不排课也不扣课时。」"],"correct":1,"score":10,"feedback_correct":"✅ 对。用休学规则回应：一次不超 30 天、释放学位、复课重排、不保证原班级，并主动帮家长评估时间。","feedback_wrong":"❌ 关键是讲清三件事：停课一次不超过 30 天、停课后释放学位、复课需重新排课且不保证原班级，再主动帮家长评估时间。A 承诺「随时回原班」是错的，D 说不扣课时也不符合规则。建议回顾第 5 章。"},{"q":"家长问：「孩子这周请了两次假，会不会扣课时？」下列回应最合适的是？","opts":["「请假一律扣课时。」","「在您课包规定的请假次数内请假，只扣请假次数、不扣课时；超出次数后才扣课时。另外 AI 补课（课程回放）是不扣课时的，直播补课才会扣。」","「请假不扣课时，随时都能补。」","「这个我查一下再回复您，具体规则我也不确定。」"],"correct":1,"score":10,"feedback_correct":"✅ 对。讲清次数内不扣课时、超出扣课时，并补充 AI 补课不扣课时。","feedback_wrong":"❌ 最好的回应是讲清「次数内只扣次数、不扣课时，超出才扣课时」，再补充 AI 补课不扣、直播补课才扣。A 与 C 都是绝对化说法，D 显得不专业。建议回顾第 4 章。"},{"q":"家长说：「我朋友是海外学员，教具教材可以换成课时，我们国内是不是也可以换？」下列回应最合适的是？","opts":["「可以，所有人都能兑换。」","「不确定，您自己在 APP 里试一下。」","「国内学员的教具教材是免费寄送的福利，不支持兑换课时；只有海外与中国台湾地区学员因为海运空运成本较高，我们会把这部分运费折成课时返还。您的豌豆宝典和计算专项突破，我们会按阶段分批寄到。」","「教具教材要另外收费，不能白送。」"],"correct":2,"score":10,"feedback_correct":"✅ 对。说明国内为免费福利不兑换，海外与中国台湾地区因运费可折课时，并给出分批寄送安排。","feedback_wrong":"❌ 正确回应是：国内教具教材是免费寄送福利、不兑换课时；只有海外与中国台湾地区学员因海运空运成本高，可将运费折成课时，同时说明教材按阶段分批寄送。A 承诺错误，B 把问题推给家长，D 与事实不符。建议回顾第 7 章。"}]]}</script>
 
 <!-- ===== 应用逻辑 ===== -->
 <script>
@@ -314,19 +342,53 @@ let quizMissed = {};           // { 'chIdx_qi': true } —— 该题首答曾答
 // 视频观看追踪：视频按 DOM 顺序编号，索引与所在章节一一对应
 // videoMeta[i] = { idx, chIdx, src }
 // videoWatched: Set<videoIdx> —— 已「完整观看」的视频
-// videoMaxTime: { videoIdx: seconds } —— 已连续观看到的最高播放位置
+// videoMaxTime: { videoIdx: seconds } —— 观看过的最高播放位置（支持自由拖动/回看）
+// videoLastPos: { videoIdx: seconds } —— 最后离开的播放位置（下次打开从这里继续）
 let videoMeta = [];
 let videoWatched = new Set();
 let videoMaxTime = {};
+let videoLastPos = {};
 const VIDEO_WATCH_RATIO = 0.95;        // 播放至 95% 即视为看完（末段黑屏/片尾不计）
 const VIDEO_MAX_RATE = APP.videoMaxRate || 1.25;   // 倍速上限：最快 1.25 倍速
 
 let studySeconds = 0; let timerInterval = null;
 
+// 章节时间跟踪：每章计划时长（由 section.duration 解析）+ 实际停留用时
+// sectionPlanSeconds[i] = seconds（解析不出则为 0）
+// chapterTimeSpent = { chIdx: seconds } —— 该章累计停留用时
+// planWarned = { chIdx: true } —— 该章已提示过「计划时间已到」
+let sectionPlanSeconds = [];
+let chapterTimeSpent = {};
+let planWarned = {};
+
 // ---------------- 工具函数 ----------------
 function escapeHtml(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// 秒 → mm:ss
+function fmtTime(sec) {
+  if (!isFinite(sec) || sec < 0) sec = 0;
+  const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+// 秒 → "12 分 30 秒"
+function fmtMinSec(sec) {
+  if (!isFinite(sec) || sec < 0) sec = 0;
+  const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+  return m > 0 ? (m + ' 分 ' + s + ' 秒') : (s + ' 秒');
+}
+
+// 计划时长字符串 → 分钟数："约 47 分钟"→47；"8-10 分钟"→10；"3-5分钟"→5；无数字→0
+function planMinutes(str) {
+  const s = String(str || '');
+  const m = s.match(/(\d+)\s*(?:[-~～至]\s*(\d+))?\s*分钟/);
+  if (m) return Math.max(parseInt(m[1], 10), m[2] ? parseInt(m[2], 10) : 0);
+  const h = s.match(/(\d+)\s*(?:个)?\s*小时/);
+  if (h) return parseInt(h[1], 10) * 60;
+  return 0;
 }
 
 // ============================================================
@@ -336,12 +398,15 @@ function init() {
   renderSidebar();
   renderSections();
   initVideoTracking();
+  // 章节计划时长（解析 section.duration），需先于 loadProgress 恢复本章用时
+  sectionPlanSeconds = courseData.sections.map(s => planMinutes(s.duration) * 60);
   // 首次进入（无历史进度）也要初始化练习进度条/状态条
   for (let i = 0; i < chapterQuizzes.length; i++) {
     if (chapterQuizzes[i] && chapterQuizzes[i].length > 0) refreshChapterQuizStatus(i);
   }
   loadProgress();
   startTimer();
+  startPlanTracking();
   loadNotes();
 }
 
@@ -414,18 +479,8 @@ function videoSrcName(v) {
 
 function attachVideoGuards(v, meta) {
   v.dataset.videoIdx = String(meta.idx);
-  // 禁止拖动：拖动后立刻回到「已连续观看的最高点」
-  v.addEventListener('seeking', () => {
-    const allow = videoMaxTime[meta.idx] || 0;
-    // 允许极小抖动（1 秒内），其余一律拉回
-    if (v.currentTime > allow + 1) {
-      v.currentTime = Math.min(allow, v.duration || allow);
-      if (!v.dataset.seekWarned || Date.now() - Number(v.dataset.seekWarned) > 4000) {
-        v.dataset.seekWarned = String(Date.now());
-        showToast('🔒 视频不可快进，请按顺序完整观看', 'warning');
-      }
-    }
-  });
+  // 允许自由拖动进度条：随时回看/定位，只刷新进度显示，不做任何拉回
+  v.addEventListener('seeking', () => { renderVideoProgress(meta); });
   // 倍速钳制：超过上限自动拉回
   v.addEventListener('ratechange', () => {
     if (v.playbackRate > VIDEO_MAX_RATE + 0.001) {
@@ -436,18 +491,23 @@ function attachVideoGuards(v, meta) {
       }
     }
   });
-  // 记录观看进度
+  // 记录观看进度（最高位用于解锁判定；最后位置用于续播）
   v.addEventListener('timeupdate', () => {
     const t = v.currentTime;
     if (!videoMaxTime[meta.idx] || t > videoMaxTime[meta.idx]) videoMaxTime[meta.idx] = t;
+    videoLastPos[meta.idx] = t;
     maybeMarkWatched(v, meta);
+    renderVideoProgress(meta);
   });
   v.addEventListener('ended', () => { markVideoWatched(meta); });
-  v.addEventListener('loadedmetadata', () => { renderVideoStatus(meta.chIdx); });
-  // 从已看位置继续播放（刷新后不从头再来）
+  v.addEventListener('loadedmetadata', () => { renderVideoStatus(meta.chIdx); renderVideoProgress(meta); });
+  // 打开页面时从上次离开的位置继续（只恢复一次，之后拖动/回看完全不干预）
+  let restored = false;
   v.addEventListener('play', () => {
-    const allow = videoMaxTime[meta.idx] || 0;
-    if (allow > 2 && Math.abs(v.currentTime - allow) > 2) v.currentTime = allow;
+    if (restored) return;
+    restored = true;
+    const last = videoLastPos[meta.idx] || videoMaxTime[meta.idx] || 0;
+    if (last > 2 && Math.abs(v.currentTime - last) > 2) v.currentTime = last;
   });
 }
 
@@ -507,11 +567,91 @@ function renderVideoStatus(chIdx) {
   }
   bar.innerHTML = allDone
     ? '<span class="vs-ok">🎬 视频已完整观看，后续章节已解锁</span>'
-    : '<span class="vs-pending">🎬 观看进度：已看完 ' + watched + '/' + mine.length + ' 段 · 完整观看后解锁后续章节（视频不可拖动快进，支持 ' + VIDEO_MAX_RATE + ' 倍速）</span>';
+    : '<span class="vs-pending">🎬 观看进度：已看完 ' + watched + '/' + mine.length + ' 段 · 看满 95% 即可解锁后续章节（进度条可自由拖动回看，支持 ' + VIDEO_MAX_RATE + ' 倍速）</span>';
+}
+
+// 视频进度信息条：已看 %、已看 / 总时长、剩余时长（拖动回看时实时刷新）
+function renderVideoProgress(meta) {
+  const v = document.querySelector('video[data-video-idx="' + meta.idx + '"]');
+  if (!v) return;
+  const wrap = v.closest('.video-wrapper');
+  if (!wrap) return;
+  let box = wrap.querySelector('.video-progress-info');
+  if (!box) {
+    box = document.createElement('div');
+    box.className = 'video-progress-info';
+    wrap.appendChild(box);
+  }
+  const dur = v.duration;
+  if (!dur || !isFinite(dur) || dur <= 0) {
+    box.innerHTML = '<span class="vp-hint">⏱ 视频加载中…</span>';
+    return;
+  }
+  const done = videoWatched.has(meta.idx);
+  const seen = done ? dur : Math.min(videoMaxTime[meta.idx] || v.currentTime || 0, dur);
+  const pct = done ? 100 : Math.min(100, Math.round(seen / dur * 100));
+  const left = done ? 0 : Math.max(0, dur - seen);
+  if (meta._vpPct === pct && meta._vpDone === done) return;   // 节流：无变化不重建
+  meta._vpPct = pct; meta._vpDone = done;
+  box.innerHTML =
+    '<div class="vp-row"><span class="vp-label">' + (done ? '✅ 已完整观看' : '🎬 观看进度') + '</span>' +
+    '<span class="vp-num">已看 <strong>' + pct + '%</strong> · ' + fmtTime(seen) + ' / ' + fmtTime(dur) + '</span>' +
+    '<span class="vp-left">' + (left > 1 ? '剩余约 ' + fmtTime(left) : '已到片尾') + '</span></div>' +
+    '<div class="vp-track"><div class="vp-fill' + (done ? ' done' : '') + '" style="width:' + pct + '%"></div></div>' +
+    '<div class="vp-tip">进度条可自由拖动，随时回看前面的内容；拖动不影响本章完成判定，看满 95% 即可解锁下一章。</div>';
 }
 
 function restoreVideoUI() {
-  videoMeta.forEach((m) => { renderVideoStatus(m.chIdx); });
+  videoMeta.forEach((m) => { renderVideoStatus(m.chIdx); renderVideoProgress(m); });
+}
+
+// ============================================================
+// 章节时间跟踪：本章计划时长 vs 实际停留用时（确保按计划看完）
+// ============================================================
+function startPlanTracking() {
+  courseData.sections.forEach((s, i) => renderChapterPlan(i));
+  setInterval(() => {
+    if (document.hidden) return;                       // 切到后台不计时
+    const cur = currentSection;
+    chapterTimeSpent[cur] = (chapterTimeSpent[cur] || 0) + 1;
+    if (chapterTimeSpent[cur] % 5 === 0) { renderChapterPlan(cur); saveProgress(); }
+    maybeWarnPlan(cur);
+  }, 1000);
+}
+
+function maybeWarnPlan(chIdx) {
+  const plan = sectionPlanSeconds[chIdx] || 0;
+  if (!plan || planWarned[chIdx]) return;
+  if ((chapterTimeSpent[chIdx] || 0) >= plan) {
+    planWarned[chIdx] = true;
+    showToast('⏱ 第 ' + (chIdx + 1) + ' 章已到计划时长（约 ' + Math.round(plan / 60) + ' 分钟），可以继续或先歇一会儿', 'warning');
+    saveProgress();
+  }
+}
+
+// 渲染某章的「计划时长 / 已用时长」进度条（章节内容顶部）
+function renderChapterPlan(chIdx) {
+  const plan = sectionPlanSeconds[chIdx] || 0;
+  if (!plan) return;
+  const section = document.querySelector('.section[data-section="' + chIdx + '"]');
+  if (!section) return;
+  const spent = chapterTimeSpent[chIdx] || 0;
+  let bar = document.getElementById('chapterplan-' + chIdx);
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.className = 'chapter-plan-bar';
+    bar.id = 'chapterplan-' + chIdx;
+    section.insertBefore(bar, section.firstChild);
+  }
+  const pct = Math.min(100, Math.round(spent / plan * 100));
+  const over = spent >= plan;
+  const leftMin = Math.max(0, Math.ceil((plan - spent) / 60));
+  bar.classList.toggle('over', over);
+  bar.innerHTML =
+    '<div class="cp-row"><span class="cp-label">⏱ 本章计划 ' + Math.round(plan / 60) + ' 分钟</span>' +
+    '<span class="cp-spent' + (over ? ' over' : '') + '">已用 ' + fmtMinSec(spent) + '</span>' +
+    '<span class="cp-rest">' + (over ? '已达计划时长，可继续学习' : '还差约 ' + leftMin + ' 分钟') + '</span></div>' +
+    '<div class="cp-track"><div class="cp-fill' + (over ? ' over' : '') + '" style="width:' + pct + '%"></div></div>';
 }
 
 // ============================================================
@@ -703,7 +843,7 @@ function canNavigateTo(index) {
 function chapterGate(i) {
   const left = chapterVideosLeft(i);
   if (left > 0) {
-    return { ok: false, msg: '还有 ' + left + ' 段视频未完整观看（视频不可拖动快进）' };
+    return { ok: false, msg: '还有 ' + left + ' 段视频未完整观看（看满 95% 即可解锁）' };
   }
   const qs = chapterQuizzes[i] || [];
   if (qs.length === 0) return { ok: true };
@@ -721,7 +861,7 @@ function navigateTo(index) {
   if (section) section.classList.add('active');
   const navItem = document.querySelector('.nav-section[data-index="' + index + '"]');
   if (navItem) navItem.classList.add('active');
-  updateProgress(); updateNotesForSection(index); saveProgress();
+  updateProgress(); updateNotesForSection(index); renderChapterPlan(index); saveProgress();
   window.scrollTo({ top: 0, behavior: 'smooth' });
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('show');
@@ -739,7 +879,7 @@ function markComplete(index) {
 function tryCompleteCourse(index) {
   for (let i = 0; i < courseData.sections.length; i++) {
     const left = chapterVideosLeft(i);
-    if (left > 0) { showToast('🎬 还有 ' + left + ' 段视频未完整观看（视频不可拖动快进）', 'warning'); return; }
+    if (left > 0) { showToast('🎬 还有 ' + left + ' 段视频未完整观看（看满 95% 即可解锁）', 'warning'); return; }
     const qs = chapterQuizzes[i] || [];
     if (qs.length && !chapterQuizDone[i]) {
       showToast('📝 请先完成第 ' + (i + 1) + ' 章「' + courseData.sections[i].title + '」的全部练习（已完成 ' + chapterQuizCorrectCount(i) + '/' + qs.length + '）', 'warning');
@@ -847,6 +987,9 @@ function saveProgress() {
     quizMissed: quizMissed,
     videoWatched: [...videoWatched],
     videoMaxTime: videoMaxTime,
+    videoLastPos: videoLastPos,
+    chapterTimeSpent: chapterTimeSpent,
+    planWarned: planWarned,
     currentSection: currentSection
   };
   try { localStorage.setItem(LS_PREFIX + '_progress', JSON.stringify(state)); } catch (e) {}
@@ -869,6 +1012,9 @@ function loadProgress() {
         });
       }
       videoMaxTime = saved.videoMaxTime || {};
+      videoLastPos = saved.videoLastPos || {};
+      chapterTimeSpent = saved.chapterTimeSpent || {};
+      planWarned = saved.planWarned || {};
       currentSection = saved.currentSection || 0;
       // 兼容旧数据：有完成标记但没有答题记录 → 重置测验状态
       const hasDoneButNoAnswers = chapterQuizDone.some(d => d) && Object.keys(chapterQuizAnswers).length === 0;
@@ -884,6 +1030,7 @@ function loadProgress() {
         }
       }
       restoreVideoUI();
+      courseData.sections.forEach((s, i) => renderChapterPlan(i));
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       const section = document.querySelector('.section[data-section="' + currentSection + '"]');
       if (section) section.classList.add('active');
